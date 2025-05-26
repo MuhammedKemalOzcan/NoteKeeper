@@ -1,0 +1,7 @@
+ECHO is on.
+.vs/
+*.user
+*.suo
+bin/
+obj/
+
