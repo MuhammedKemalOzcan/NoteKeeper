@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NoteKeeperAPI.Domain.Entities;
 using NoteKeeperAPI.Persistence.Contexts;
@@ -44,10 +39,10 @@ namespace NoteKeeperAPI.API.Controller
 
         // PUT: api/Notes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutNote(Guid id, Note note)
+        [HttpPut]
+        public async Task<IActionResult> PutNote([FromRoute]string id, Note note)
         {
-            if (id != note.Id)
+            if (Guid.Parse(id) != note.Id)
             {
                 return BadRequest();
             }
@@ -60,7 +55,7 @@ namespace NoteKeeperAPI.API.Controller
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!NoteExists(id))
+                if (!NoteExists(Guid.Parse(id)))
                 {
                     return NotFound();
                 }
