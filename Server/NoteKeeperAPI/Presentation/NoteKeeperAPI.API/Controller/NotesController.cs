@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NoteKeeperAPI.Application.DTO.Notes;
+using NoteKeeperAPI.Application.Repositories.Notes;
 using NoteKeeperAPI.Domain.Entities;
 using NoteKeeperAPI.Persistence.Contexts;
+using System.Net;
 
 namespace NoteKeeperAPI.API.Controller
 {
@@ -9,95 +12,56 @@ namespace NoteKeeperAPI.API.Controller
     [ApiController]
     public class NotesController : ControllerBase
     {
-        private readonly NoteKeeperAPIDbContext _context;
-
-        public NotesController(NoteKeeperAPIDbContext context)
+        private readonly INotesReadRepository _notesReadRepository;
+        private readonly INotesWriteRepository _notesWriteRepository;
+        public NotesController(INotesReadRepository notesReadRepository, INotesWriteRepository notesWriteRepository)
         {
-            _context = context;
+            _notesReadRepository = notesReadRepository;
+            _notesWriteRepository = notesWriteRepository;
         }
 
-        // GET: api/Notes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Note>>> GetNotes()
+        public async Task<IActionResult> Get()
         {
-            return await _context.Notes.ToListAsync();
+            var notes = _notesReadRepository.GetAll(false);
+            return Ok(notes);
         }
 
-        // GET: api/Notes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Note>> GetNote(Guid id)
+        public async Task<IActionResult> Get([FromRoute] string id)
         {
-            var note = await _context.Notes.FindAsync(id);
-
-            if (note == null)
-            {
-                return NotFound();
-            }
-
-            return note;
+            Note note = await _notesReadRepository.GetByIdAsync(id,false);
+            return Ok(note);
         }
-
-        // PUT: api/Notes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut]
-        public async Task<IActionResult> PutNote([FromRoute]string id, Note note)
-        {
-            if (Guid.Parse(id) != note.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(note).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!NoteExists(Guid.Parse(id)))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Notes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Note>> PostNote(Note note)
+        public async Task<IActionResult> Post([FromBody] CreateNoteDto createNote)
         {
-            _context.Notes.Add(note);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetNote", new { id = note.Id }, note);
-        }
-
-        // DELETE: api/Notes/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteNote(Guid id)
-        {
-            var note = await _context.Notes.FindAsync(id);
-            if (note == null)
+            await _notesWriteRepository.AddAsync(new()
             {
-                return NotFound();
-            }
-
-            _context.Notes.Remove(note);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+                Title = createNote.Title,
+                Description = createNote.Description
+            });
+            await _notesWriteRepository.SaveAsync();
+            return StatusCode((int)HttpStatusCode.Created);
         }
 
-        private bool NoteExists(Guid id)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateNoteDto updateNote)
         {
-            return _context.Notes.Any(e => e.Id == id);
+            Note note = await _notesReadRepository.GetByIdAsync(updateNote.Id);
+            note.Title = updateNote.Title;
+            note.Description = updateNote.Description;
+            await _notesWriteRepository.SaveAsync();
+            return Ok(note);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] string id)
+        {
+            await _notesWriteRepository.RemoveAsync(id);
+            await _notesWriteRepository.SaveAsync();
+            return Ok();
+        }
+
     }
 }

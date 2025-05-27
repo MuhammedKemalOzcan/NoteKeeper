@@ -6,8 +6,5 @@ using System.Threading.Tasks;
 
 namespace NoteKeeperAPI.Application.Validators.Notes
 {
-    public class CreateNoteValidator : 
-    {
 
-    }
 }
