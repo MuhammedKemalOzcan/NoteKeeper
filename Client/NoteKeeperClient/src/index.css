@@ -2,3 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+h1 {
+  font-size: 24px;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+  line-height: 120%;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+  line-height: 120%;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+}
+h3 {
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  line-height: 120%;
+  letter-spacing: -0.3px;
+  font-weight: bold;
+}
+h4 {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  line-height: 120%;
+  letter-spacing: -0.2px;
+}
+h5 {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  line-height: 120%;
+  letter-spacing: -0.2px;
+}
+h6 {
+  font-size: 12px;
+  font-family: "Inter", sans-serif;
+  line-height: 120%;
+  letter-spacing: -0.2px;
+}

@@ -17,7 +17,7 @@ const links = [
 
 export default function NavbarMobile() {
   return (
-      <div className="fixed bottom-0 w-full h-20 flex justify-around items-center border-t p-3 ">
+      <div className="fixed bottom-0 w-full h-20 flex justify-around items-center border-t p-3 lg:hidden ">
         {links.map((link) => {
           const Icon = link.icon;
           return (
