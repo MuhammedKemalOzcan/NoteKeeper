@@ -5,6 +5,8 @@ import Search from "./pages/Search";
 import ArchivedNotes from "./pages/ArchivedNotes";
 import Tags from "./pages/Tags";
 import Settings from "./pages/Settings";
+import NoteDetail from "./pages/NoteDetail";
+import NotesLayout from "./layouts/NotesLayout";
 
 const router = createBrowserRouter([
   {
@@ -12,9 +14,16 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { index: true, element: <AllNotes /> },
-      { path: "home", element: <AllNotes /> },
-      { path: "search", element: <Search /> },
+      {
+        path: "notes",
+        element: <NotesLayout />,
+        children: [
+          { index: true, element: <AllNotes /> },
+          { path: ":id", element: <NoteDetail /> },
+        ],
+      },
       { path: "archived", element: <ArchivedNotes /> },
+      { path: "search", element: <Search /> },
       { path: "tags", element: <Tags /> },
       { path: "settings", element: <Settings /> },
     ],

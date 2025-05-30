@@ -1,20 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-type Notes = {
-  id: number;
-  title: string;
-  description: string;
-  createdDate: Date;
-  updatedDate: Date;
-};
+import NotesList from "../components/NotesList";
+import type { Notes } from "../types/notes";
 
 export default function AllNotes() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState<Notes[]>([]);
 
   useEffect(() => {
     async function fetchNotes() {
-      const response = await axios.get("https://localhost:7001/api/Notes");
+      const response = await axios.get<Notes[]>(
+        "https://localhost:7001/api/Notes"
+      );
       console.log(response.data);
       setNotes(response.data);
     }
@@ -22,13 +18,10 @@ export default function AllNotes() {
   }, []);
 
   return (
-    <div className="rounded-[12px] p-4 ">
-      <h1 className="text-[29px] font-bold ">All Notes</h1>
-      {/* {notes.map((note) => (
-        <div key={note.id}>
-          <p>{note.title}</p>
-        </div>
-      ))} */}
+    <div id="allNotes">
+      <div className="flex">
+        <NotesList notes={notes} />
+      </div>
     </div>
   );
 }
