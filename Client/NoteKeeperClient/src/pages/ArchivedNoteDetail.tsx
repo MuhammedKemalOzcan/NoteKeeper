@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import type { Notes } from "../types/notes";
 import DisplayNote from "../components/DisplayNote";
-import DesktopHeader from "../components/DesktopHeader";
 
-export default function NoteDetail() {
+export default function ArchivedNoteDetail() {
   const { id } = useParams();
   const [note, setNote] = useState<Notes>();
   const [loading, setLoading] = useState(true);
@@ -16,6 +15,7 @@ export default function NoteDetail() {
         const response = await axios.get<Notes>(
           "https://localhost:7001/api/Notes/" + id
         );
+        console.log(response.data);
         setNote(response.data);
       } catch (error) {
         console.log(error);
