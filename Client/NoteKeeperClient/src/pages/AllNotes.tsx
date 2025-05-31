@@ -11,7 +11,6 @@ export default function AllNotes() {
       const response = await axios.get<Notes[]>(
         "https://localhost:7001/api/Notes"
       );
-      console.log(response.data);
       setNotes(response.data);
     }
     fetchNotes();
@@ -20,7 +19,7 @@ export default function AllNotes() {
   return (
     <div id="allNotes">
       <div className="flex">
-        <NotesList notes={notes} />
+        <NotesList notes={notes} type="active" />
       </div>
     </div>
   );

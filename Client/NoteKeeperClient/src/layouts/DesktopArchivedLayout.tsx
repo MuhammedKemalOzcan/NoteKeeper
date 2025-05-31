@@ -1,21 +1,21 @@
 import { useParams } from "react-router";
-import NoteDetail from "../pages/NoteDetail";
-import AllNotes from "../pages/AllNotes";
-import CreateNote from "../components/CreateNote";
 import NoteSettings from "../components/NoteSettings";
+import ArchivedNotes from "../pages/ArchivedNotes";
+import ArchivedNoteDetail from "../pages/ArchivedNoteDetail";
 
-export default function DesktopLayout() {
+export default function DesktopArchivedLayout() {
   const { id } = useParams();
+  console.log(id);
   return (
     <div id="desktopLayout" className="flex">
-      <div>
-        <AllNotes />
+      <div className="w-[26%]">
+        <ArchivedNotes />
       </div>
       <main id="note-detail" className="w-[50%]">
-        {id ? <NoteDetail /> : <CreateNote />}
+        {id && <ArchivedNoteDetail />}
       </main>
       <div className="flex flex-col w-[25%] ">
-        {id && <NoteSettings type="active" />}
+        <NoteSettings type="archived" />
       </div>
     </div>
   );

@@ -4,4 +4,5 @@ export interface Notes {
   description: string;
   createdDate: string;
   updatedDate: string;
+  isArchived:boolean
 }

@@ -10,8 +10,6 @@ export function UseIsMobile() {
       } else setIsMobile(false);
     };
     checkScreen();
-    console.log(isMobile);
-    console.log(window.innerWidth);
     window.addEventListener("resize", checkScreen);
     return;
   }, [isMobile]);
