@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router";
 import { dateFormater } from "../utils/format";
 import type { Notes } from "../types/notes";
 import { Plus } from "lucide-react";
+import { useNotes } from "../context/NoteContext";
 
 interface Props {
   notes: Notes[];
@@ -47,7 +48,10 @@ const NotesList = ({ notes, type = "active" }: Props) => {
           <div className="border-b mt-5"></div>
         </NavLink>
       ))}
-      <button className="absolute bottom-40 right-10 bg-blue-500 p-3 rounded-full drop-shadow-lg lg:hidden ">
+      <button
+        onClick={() => navigate("/notes/create")}
+        className="absolute bottom-40 right-10 bg-blue-500 p-3 rounded-full drop-shadow-lg lg:hidden "
+      >
         <Plus className="text-white" />
       </button>
     </div>

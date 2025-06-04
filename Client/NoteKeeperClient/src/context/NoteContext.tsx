@@ -8,6 +8,7 @@ type NotesContextType = {
   fetchNotes: () => void;
   addNote: (note: AddNote) => Promise<void>;
   deleteNote: (id: string | undefined) => Promise<void>;
+  patchNote: (id: string | undefined, isArchived: boolean) => Promise<void>;
 };
 
 export const NoteContext = createContext<NotesContextType | undefined>(
@@ -36,13 +37,31 @@ export function NoteContextProvider({
   };
 
   const addNote = async (note: AddNote) => {
-    await axios.post("https://localhost:7001/api/Notes", note);
-    fetchNotes(); // yeni not eklendikten sonra tekrar fetch et
+    const response = await axios.post<Notes>(
+      "https://localhost:7001/api/Notes",
+      note
+    );
+    setNotes((prevNotes) => [...prevNotes, response.data]);
   };
 
   const deleteNote = async (id: string | undefined) => {
+    if (!id) return;
     await axios.delete("https://localhost:7001/api/Notes/" + id);
-    await fetchNotes();
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
+  };
+
+  const patchNote = async (id: string | undefined, isArchived: boolean) => {
+    if (!id) throw new Error("Note ID is required");
+    const response = await axios.patch<Notes>(
+      `https://localhost:7001/api/Notes`,
+      { id,isArchived }
+    );
+
+    const updatedNote = response.data;
+
+    setNotes((prevNotes) =>
+      prevNotes.map((note) => (note.id === updatedNote.id ? updatedNote : note))
+    );
   };
 
   useEffect(() => {
@@ -51,7 +70,7 @@ export function NoteContextProvider({
 
   return (
     <NoteContext.Provider
-      value={{ notes, setNotes, fetchNotes, addNote, deleteNote }}
+      value={{ notes, setNotes, fetchNotes, addNote, deleteNote, patchNote }}
     >
       {children}{" "}
       {/*provider aracılığıyla göndereceğimiz component ve sayfalar children yardımıyla erişir. */}

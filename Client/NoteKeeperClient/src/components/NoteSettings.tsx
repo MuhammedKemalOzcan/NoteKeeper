@@ -7,7 +7,7 @@ interface Props {
 }
 
 function NoteSettings({ type }: Props) {
-  const { deleteNote } = useNotes();
+  const { deleteNote, patchNote } = useNotes();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -16,17 +16,28 @@ function NoteSettings({ type }: Props) {
     navigate("/notes");
   };
 
+  const handleArchive = async () => {
+    await patchNote(id, true);
+    navigate("/archived");
+  };
+
+  const handleRestore = async () => {
+    await patchNote(id, false);
+    navigate("/notes");
+  };
+
   return (
     <div className="p-4 border-l-[2px] h-screen w-full flex flex-col gap-3 whitespace-nowrap ">
       {type == "active" ? (
         <button
+          onClick={handleArchive}
           className="flex  gap-2 border border-gray p-4 rounded-[8px] w-full "
         >
           <Archive />
           Archive Note
         </button>
       ) : (
-        <button className="flex  gap-2 border border-gray p-4 rounded-[8px] w-full ">
+        <button onClick={handleRestore} className="flex  gap-2 border border-gray p-4 rounded-[8px] w-full ">
           <RefreshCcw />
           Restore Note
         </button>
