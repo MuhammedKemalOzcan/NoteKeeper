@@ -5,7 +5,6 @@ import ArchivedNoteDetail from "../pages/ArchivedNoteDetail";
 
 export default function DesktopArchivedLayout() {
   const { id } = useParams();
-  console.log(id);
   return (
     <div id="desktopLayout" className="flex">
       <div className="w-[30%]">

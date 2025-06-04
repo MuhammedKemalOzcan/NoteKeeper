@@ -6,12 +6,13 @@ import { dateFormater } from "../utils/format";
 
 interface Props {
   note?: Notes;
+  type: "active" | "archived";
 }
 
-const DisplayNote = ({ note }: Props) => {
+const DisplayNote = ({ note,type }: Props) => {
   return (
     <div className="p-4 pt-4 gap-4 w-full ">
-      <ActionBar />
+      <ActionBar type = {type} />
       <div className="mt-4 whitespace-pre-line flex flex-col gap-4">
         <h1>{note?.title}</h1>
         <div className="flex flex-col gap-4 ">

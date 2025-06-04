@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import type { Notes } from "../types/notes";
 import DisplayNote from "../components/DisplayNote";
-import DesktopHeader from "../components/DesktopHeader";
 
 export default function NoteDetail() {
   const { id } = useParams();
@@ -30,7 +29,7 @@ export default function NoteDetail() {
 
   return (
     <div>
-      <DisplayNote note={note} />
+      <DisplayNote type="active" note={note} />
     </div>
   );
 }

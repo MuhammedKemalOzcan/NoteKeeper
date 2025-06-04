@@ -30,7 +30,7 @@ export default function ArchivedNoteDetail() {
 
   return (
     <div>
-      <DisplayNote note={note} />
+      <DisplayNote type="archived" note={note} />
     </div>
   );
 }

@@ -10,7 +10,6 @@ export default function ArchivedNotes() {
       const response = await axios.get<Notes[]>(
         "https://localhost:7001/api/Notes"
       );
-      console.log(response.data);
       setNotes(response.data);
     }
     fetchNotes();
