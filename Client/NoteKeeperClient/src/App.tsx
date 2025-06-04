@@ -9,6 +9,7 @@ import Settings from "./pages/Settings";
 import NoteDetail from "./pages/NoteDetail";
 import NotesLayout from "./layouts/NotesLayout";
 import ArchivedNoteDetail from "./pages/ArchivedNoteDetail";
+import CreateNote from "./components/CreateNote";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <AllNotes /> },
           { path: ":id", element: <NoteDetail /> },
+          { path: "create", element: <CreateNote /> },
         ],
       },
       {
@@ -40,6 +42,8 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+
+
   return <RouterProvider router={router} />;
 }
 
