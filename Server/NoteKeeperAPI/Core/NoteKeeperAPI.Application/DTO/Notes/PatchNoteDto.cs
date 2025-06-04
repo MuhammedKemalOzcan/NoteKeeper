@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace NoteKeeperAPI.Application.DTO.Notes
 {
-    public class CreateNoteDto
+    public class PatchNoteDto
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string Id { get; set; }
         public bool IsArchived { get; set; }
     }
 }

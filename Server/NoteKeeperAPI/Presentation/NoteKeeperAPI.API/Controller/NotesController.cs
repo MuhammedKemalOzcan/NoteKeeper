@@ -39,7 +39,8 @@ namespace NoteKeeperAPI.API.Controller
             await _notesWriteRepository.AddAsync(new()
             {
                 Title = createNote.Title,
-                Description = createNote.Description
+                Description = createNote.Description,
+                IsArchived = createNote.IsArchived,
             });
             await _notesWriteRepository.SaveAsync();
             return StatusCode((int)HttpStatusCode.Created);
@@ -51,6 +52,16 @@ namespace NoteKeeperAPI.API.Controller
             Note note = await _notesReadRepository.GetByIdAsync(updateNote.Id);
             note.Title = updateNote.Title;
             note.Description = updateNote.Description;
+            note.IsArchived = updateNote.IsArchived;
+            await _notesWriteRepository.SaveAsync();
+            return Ok(note);
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> Patch([FromBody] PatchNoteDto noteDto)
+        {
+            Note note = await _notesReadRepository.GetByIdAsync(noteDto.Id);
+            note.IsArchived = noteDto.IsArchived;
             await _notesWriteRepository.SaveAsync();
             return Ok(note);
         }
