@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { dateFormater } from "../utils/format";
 import type { Notes } from "../types/notes";
 import { Plus } from "lucide-react";
@@ -21,6 +21,7 @@ const NotesList = ({ notes, type = "active" }: Props) => {
       link: "/archived/",
     },
   };
+  const navigate = useNavigate();
 
   const currentConfig = config[type];
   const filteredNotes = notes.filter(currentConfig.filter);
@@ -28,7 +29,10 @@ const NotesList = ({ notes, type = "active" }: Props) => {
   return (
     <div className="p-4 max-lg:w-full flex flex-col lg:border-r h-screen relative">
       <h1 className="lg:hidden mb-4">{currentConfig.title}</h1>
-      <button className="bg-blue-500 text-white p-3 rounded-[12px] mb-4 max-lg:hidden ">
+      <button
+        onClick={() => navigate("/notes/create")}
+        className="bg-blue-500 text-white p-3 rounded-[12px] mb-4 max-lg:hidden "
+      >
         + Create New Note
       </button>
 
