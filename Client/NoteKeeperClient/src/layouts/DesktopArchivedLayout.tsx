@@ -8,14 +8,14 @@ export default function DesktopArchivedLayout() {
   console.log(id);
   return (
     <div id="desktopLayout" className="flex">
-      <div className="w-[26%]">
+      <div className="w-[30%]">
         <ArchivedNotes />
       </div>
       <main id="note-detail" className="w-[50%]">
         {id && <ArchivedNoteDetail />}
       </main>
       <div className="flex flex-col w-[25%] ">
-        <NoteSettings type="archived" />
+        {id && <NoteSettings type="archived" />}
       </div>
     </div>
   );
