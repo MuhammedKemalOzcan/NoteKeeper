@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using NoteKeeperAPI.Domain.Entities;
 using NoteKeeperAPI.Domain.Entities.Common;
+using NoteKeeperAPI.Domain.Entities.Identity;
 
 namespace NoteKeeperAPI.Persistence.Contexts
 {
-    public class NoteKeeperAPIDbContext : DbContext
+    public class NoteKeeperAPIDbContext : IdentityDbContext<AppUser,AppRole,string>
     {
         public NoteKeeperAPIDbContext(DbContextOptions options) : base(options)
         {
