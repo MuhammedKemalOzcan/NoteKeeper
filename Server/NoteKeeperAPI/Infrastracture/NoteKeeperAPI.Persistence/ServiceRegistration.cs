@@ -19,17 +19,17 @@ namespace NoteKeeperAPI.Persistence
                 options.UseNpgsql(Configuration.ConnectionString);
             });
 
-            services.AddIdentityCore<AppUser>(options =>
+            services.AddIdentity<AppUser, AppRole>(options =>
             {
                 options.Password.RequiredLength = 9;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
-
+                options.User.RequireUniqueEmail = true;
             })
-                .AddRoles<AppRole>()
-                .AddEntityFrameworkStores<NoteKeeperAPIDbContext>();
+                .AddEntityFrameworkStores<NoteKeeperAPIDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddScoped<INotesReadRepository, NotesReadRepository>();
             services.AddScoped<INotesWriteRepository, NotesWriteRepository>();
