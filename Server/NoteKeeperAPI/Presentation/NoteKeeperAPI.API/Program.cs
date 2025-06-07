@@ -1,4 +1,5 @@
 
+using NoteKeeperAPI.Application;
 using NoteKeeperAPI.Persistence;
 
 namespace NoteKeeperAPI.API
@@ -15,6 +16,7 @@ namespace NoteKeeperAPI.API
                 policy.WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod()));
 
             builder.Services.AddPersistenceServices();
+            builder.Services.AddApplicationServices();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
