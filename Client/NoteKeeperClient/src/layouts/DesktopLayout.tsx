@@ -15,8 +15,8 @@ export default function DesktopLayout() {
         <AllNotes/>
       </div>
       <main id="note-detail" className="w-[50%]">
-        {id ? <NoteDetail /> : <div></div>}
-        {isCreate ? <CreateNote/> : <div></div>}
+        {id && <NoteDetail />}
+        {isCreate && <CreateNote/>}
       </main>
       <div className="flex flex-col w-[25%] ">
         {id && <NoteSettings type="active" />}

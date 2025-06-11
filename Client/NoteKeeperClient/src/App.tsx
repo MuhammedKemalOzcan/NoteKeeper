@@ -10,13 +10,13 @@ import NoteDetail from "./pages/NoteDetail";
 import NotesLayout from "./layouts/NotesLayout";
 import ArchivedNoteDetail from "./pages/ArchivedNoteDetail";
 import CreateNote from "./components/CreateNote";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      { index: true, element: <AllNotes /> },
       {
         path: "notes",
         element: <NotesLayout />,
@@ -39,11 +39,10 @@ const router = createBrowserRouter([
       { path: "settings", element: <Settings /> },
     ],
   },
+  { path: "login", element: <Login /> },
 ]);
 
 function App() {
-
-
   return <RouterProvider router={router} />;
 }
 

@@ -18,7 +18,6 @@ export default function MainLayout() {
         <DesktopHeader />
         <Outlet />
       </div>
-
       {isMobile && <NavbarMobile />}
     </div>
   );
