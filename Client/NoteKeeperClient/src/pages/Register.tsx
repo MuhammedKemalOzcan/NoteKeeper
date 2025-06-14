@@ -3,11 +3,12 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
 
 type LoginData = {
-  usernameOrEmail: string;
+  username: string;
+  email: string;
   password: string;
 };
 
-export default function Login() {
+export default function Register() {
   const navigate = useNavigate();
   const {
     register,
@@ -15,7 +16,8 @@ export default function Login() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      usernameOrEmail: "",
+      username: "",
+      email: "",
       password: "",
     },
   });
@@ -23,19 +25,15 @@ export default function Login() {
   const onSubmit: SubmitHandler<LoginData> = async (data) => {
     try {
       const response = await axios.post(
-        "https://localhost:7001/api/Users/Login",
+        "https://localhost:7001/api/Users",
         data
       );
-      localStorage.setItem("user", JSON.stringify(response.data.token.accessToken));
       if (response.status === 201 || response.status === 200) {
         // Başarılı şekilde kayıt olunduysa login sayfasına yönlendir
-        navigate("/notes");
-        console.log(response.data.token.accessToken);
-      } else {
-        console.log("Kullanıcı adı veya şifre hatalı");
+        navigate("/login");
       }
     } catch (error) {
-      console.error("Giriş yaparken hata:", error);
+      console.error("Kayıt olurken hata:", error);
       // İstersen burada kullanıcıya hata mesajı gösterebilirsin
     }
 
@@ -50,21 +48,34 @@ export default function Login() {
           className="w-full flex flex-col gap-4 "
         >
           <div className="flex flex-col items-center">
-            <h1>Welcome to Note</h1>
-            <p>Please log in to continue</p>
+            <h1>Create Your Account</h1>
+            <p>
+              Sign up to start organizing your notes and boost your
+              productivity.
+            </p>
           </div>
-
           <label className="w-full flex flex-col">
-            Username or Email
+            Username
             <input
-              {...register("usernameOrEmail", {
+              {...register("username", {
+                required: "username Required!",
+              })}
+              type="text"
+              className=" border p-3 rounded-[8px] "
+            />
+            <p className="text-red-500">{errors.email?.message}</p>
+          </label>
+          <label className="w-full flex flex-col">
+            Email addres
+            <input
+              {...register("email", {
                 required: "email Required!",
               })}
               type="text"
               className=" border p-3 rounded-[8px] "
               placeholder="email@example.com"
             />
-            <p className="text-red-500">{errors.usernameOrEmail?.message}</p>
+            <p className="text-red-500">{errors.email?.message}</p>
           </label>
           <label className="w-full flex flex-col">
             Password
@@ -84,7 +95,7 @@ export default function Login() {
             type="submit"
             className="w-full bg-blue-500 p-3 text-white rounded-[8px]"
           >
-            Login
+            Sign up
           </button>
           <div className="border w-full"></div>
         </form>
@@ -94,9 +105,9 @@ export default function Login() {
         </button>
         <div className="border w-full"></div>
         <div className="flex gap-2">
-          <p>No account yet?</p>
-          <button onClick={() => navigate("/register")}>
-            <h3>Sign up</h3>
+          <p>Already have an account?</p>
+          <button onClick={() => navigate("/login")}>
+            <h3>Login</h3>
           </button>
         </div>
       </div>

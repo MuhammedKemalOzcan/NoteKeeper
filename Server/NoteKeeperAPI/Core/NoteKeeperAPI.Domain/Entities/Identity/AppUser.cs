@@ -9,6 +9,6 @@ namespace NoteKeeperAPI.Domain.Entities.Identity
 {
     public class AppUser : IdentityUser<string>
     {
-        public string FullName { get; set; }
+        public ICollection<Note> Notes { get; set; } = new List<Note>();
     }
 }

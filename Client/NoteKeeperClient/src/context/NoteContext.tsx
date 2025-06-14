@@ -6,9 +6,12 @@ type NotesContextType = {
   notes: Notes[];
   setNotes: React.Dispatch<React.SetStateAction<Notes[]>>;
   fetchNotes: () => void;
+  fetchNoteById: (id: string | undefined) => void;
   addNote: (note: AddNote) => Promise<void>;
   deleteNote: (id: string | undefined) => Promise<void>;
   patchNote: (id: string | undefined, isArchived: boolean) => Promise<void>;
+  note: Notes;
+  setNote: React.Dispatch<React.SetStateAction<Notes | undefined>>;
 };
 
 export const NoteContext = createContext<NotesContextType | undefined>(
@@ -28,12 +31,31 @@ export function NoteContextProvider({
   children: React.ReactNode;
 }) {
   const [notes, setNotes] = useState<Notes[]>([]);
+  const [note, setNote] = useState<Notes>();
+  const token = JSON.parse(localStorage.getItem("user") ?? "");
 
   const fetchNotes = async () => {
     const response = await axios.get<Notes[]>(
-      "https://localhost:7001/api/Notes"
+      "https://localhost:7001/api/Notes",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
     );
-    setNotes(response.data);
+    setNotes(response.data.notes);
+  };
+
+  const fetchNoteById = async (id: string) => {
+    const response = await axios.get<Notes[]>(
+      "https://localhost:7001/api/Notes" + id,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    setNote(response.data.notes);
   };
 
   const addNote = async (note: AddNote) => {
@@ -54,7 +76,7 @@ export function NoteContextProvider({
     if (!id) throw new Error("Note ID is required");
     const response = await axios.patch<Notes>(
       `https://localhost:7001/api/Notes`,
-      { id,isArchived }
+      { id, isArchived }
     );
 
     const updatedNote = response.data;
@@ -70,7 +92,17 @@ export function NoteContextProvider({
 
   return (
     <NoteContext.Provider
-      value={{ notes, setNotes, fetchNotes, addNote, deleteNote, patchNote }}
+      value={{
+        notes,
+        setNotes,
+        fetchNotes,
+        addNote,
+        deleteNote,
+        patchNote,
+        note,
+        setNote,
+        fetchNoteById,
+      }}
     >
       {children}{" "}
       {/*provider aracılığıyla göndereceğimiz component ve sayfalar children yardımıyla erişir. */}

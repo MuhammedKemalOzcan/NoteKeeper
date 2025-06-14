@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using NoteKeeperAPI.Domain.Entities;
 using NoteKeeperAPI.Domain.Entities.Common;
 using NoteKeeperAPI.Domain.Entities.Identity;
+using NoteKeeperAPI.Domain.EntityConfiguration;
 
 namespace NoteKeeperAPI.Persistence.Contexts
 {
@@ -29,6 +30,13 @@ namespace NoteKeeperAPI.Persistence.Contexts
             }
             return await base.SaveChangesAsync(cancellationToken);
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new NoteConfiguration() );
         }
 
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoteKeeperAPI.Application.Services
+namespace NoteKeeperAPI.Application.Abstraction.Services
 {
     public interface IUserService
     {

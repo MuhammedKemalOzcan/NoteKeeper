@@ -1,19 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import type { Notes } from "../types/notes";
 import NotesList from "../components/NotesList";
+import { useNotes } from "../context/NoteContext";
 
 export default function ArchivedNotes() {
-  const [notes, setNotes] = useState<Notes[]>([]);
-  useEffect(() => {
-    async function fetchNotes() {
-      const response = await axios.get<Notes[]>(
-        "https://localhost:7001/api/Notes"
-      );
-      setNotes(response.data);
-    }
-    fetchNotes();
-  }, []);
+  const { notes } = useNotes();
+
   return (
     <div>
       <NotesList notes={notes} type="archived" />

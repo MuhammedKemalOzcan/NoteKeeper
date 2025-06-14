@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using NoteKeeperAPI.Application.Abstraction.Services;
 using NoteKeeperAPI.Application.DTO.User;
-using NoteKeeperAPI.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +21,9 @@ namespace NoteKeeperAPI.Application.Features.Commands.AppUser.CreateUser
         {
             CreateUserResponse response = await _userService.CreateAsync(new()
             {
+                Username= request.Username,
                 Email = request.Email,
-                FullName = request.FullName,
                 Password = request.Password,
-                PasswordConfirm = request.PasswordConfirm,
-                Username = request.Username
             });
 
             return new()

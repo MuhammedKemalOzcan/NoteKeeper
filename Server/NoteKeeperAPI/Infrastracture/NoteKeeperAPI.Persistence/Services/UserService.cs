@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using NoteKeeperAPI.Application.Abstraction.Services;
 using NoteKeeperAPI.Application.DTO.User;
-using NoteKeeperAPI.Application.Services;
 using NoteKeeperAPI.Domain.Entities.Identity;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,6 @@ namespace NoteKeeperAPI.Persistence.Services
                 Id = Guid.NewGuid().ToString(),
                 UserName = model.Username,
                 Email = model.Email,
-                FullName = model.FullName
             },model.Password);
 
             CreateUserResponse response = new() { Succeeded = result.Succeeded };
