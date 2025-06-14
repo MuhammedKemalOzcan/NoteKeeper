@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
+using NoteKeeperAPI.Application.Abstraction.Services;
+using NoteKeeperAPI.Application.DTO;
 using NoteKeeperAPI.Domain.Entities.Identity;
 using System;
 using System.Collections.Generic;
@@ -12,32 +14,21 @@ namespace NoteKeeperAPI.Application.Features.Commands.AppUser.LoginUser
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, LoginUserCommandResponse>
     {
 
-        readonly UserManager<Domain.Entities.Identity.AppUser> _userManager;
-        readonly SignInManager<Domain.Entities.Identity.AppUser> _signInManager;
+        readonly IAuthService _authService;
 
-        public LoginUserCommandHandler(UserManager<Domain.Entities.Identity.AppUser> userManager, SignInManager<Domain.Entities.Identity.AppUser> signInManager)
+        public LoginUserCommandHandler(IAuthService authService)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _authService = authService;
         }
 
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
-            Domain.Entities.Identity.AppUser user = await _userManager.FindByNameAsync(request.UsernameOrEmail);
-            if (user == null)
-                user = await _userManager.FindByEmailAsync(request.UsernameOrEmail);
+            var token = await _authService.LoginAsync(request.UsernameOrEmail,request.Password,15);
 
-            if (user == null)
-                throw new Exception("Kullanıcı veya şifre hatalı.");
-
-            //User şifreyle doğrulanıyor mu kontrol et.
-            SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
-            if (result.Succeeded)
+            return new()
             {
-                //Yetki belirlenecek kısım.
-            }
-
-            return new();
+                Token = token
+            };
 
         }
     }

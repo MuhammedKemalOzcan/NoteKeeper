@@ -1,0 +1,773 @@
+Folder PATH listing
+Volume serial number is 0A06-A0C0
+C:.
+-   structure.txt
+-   
+L¦¦¦NoteKeeperAPI
+    -   .gitignore
+    -   NoteKeeperAPI.sln
+    -   
+    +¦¦¦Core
+    -   +¦¦¦NoteKeeperAPI.Application
+    -   -   -   NoteKeeperAPI.Application.csproj
+    -   -   -   ServiceRegistration.cs
+    -   -   -   
+    -   -   +¦¦¦Abstraction
+    -   -   -   -   ITokenHandler.cs
+    -   -   -   -   
+    -   -   -   L¦¦¦Services
+    -   -   -       -   IAuthService.cs
+    -   -   -       -   IUserService.cs
+    -   -   -       -   
+    -   -   -       L¦¦¦Authentications
+    -   -   -               IInternalAuthentications.cs
+    -   -   -               
+    -   -   +¦¦¦bin
+    -   -   -   L¦¦¦Debug
+    -   -   -       L¦¦¦net8.0
+    -   -   -               NoteKeeperAPI.Application.deps.json
+    -   -   -               NoteKeeperAPI.Application.dll
+    -   -   -               NoteKeeperAPI.Application.pdb
+    -   -   -               NoteKeeperAPI.Domain.dll
+    -   -   -               NoteKeeperAPI.Domain.pdb
+    -   -   -               
+    -   -   +¦¦¦DTO
+    -   -   -   -   Token.cs
+    -   -   -   -   
+    -   -   -   +¦¦¦Notes
+    -   -   -   -       CreateNoteDto.cs
+    -   -   -   -       PatchNoteDto.cs
+    -   -   -   -       UpdateNoteDto.cs
+    -   -   -   -       
+    -   -   -   L¦¦¦User
+    -   -   -           CreateUser.cs
+    -   -   -           CreateUserResponse.cs
+    -   -   -           
+    -   -   +¦¦¦DTOs
+    -   -   +¦¦¦Exceptions
+    -   -   -       AuthenticationErrorExceptions.cs
+    -   -   -       
+    -   -   +¦¦¦Features
+    -   -   -   L¦¦¦Commands
+    -   -   -       L¦¦¦AppUser
+    -   -   -           +¦¦¦CreateUser
+    -   -   -           -       CreateUserCommandHandler.cs
+    -   -   -           -       CreateUserCommandRequest.cs
+    -   -   -           -       CreateUserCommandResponse.cs
+    -   -   -           -       
+    -   -   -           L¦¦¦LoginUser
+    -   -   -                   LoginUserCommandHandler.cs
+    -   -   -                   LoginUserCommandRequest.cs
+    -   -   -                   LoginUserCommandResponse.cs
+    -   -   -                   
+    -   -   +¦¦¦obj
+    -   -   -   -   NoteKeeperAPI.Application.csproj.nuget.dgspec.json
+    -   -   -   -   NoteKeeperAPI.Application.csproj.nuget.g.props
+    -   -   -   -   NoteKeeperAPI.Application.csproj.nuget.g.targets
+    -   -   -   -   project.assets.json
+    -   -   -   -   project.nuget.cache
+    -   -   -   -   
+    -   -   -   L¦¦¦Debug
+    -   -   -       L¦¦¦net8.0
+    -   -   -           -   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+    -   -   -           -   NoteKeep.7232FC69.Up2Date
+    -   -   -           -   NoteKeeperAPI.Application.AssemblyInfo.cs
+    -   -   -           -   NoteKeeperAPI.Application.AssemblyInfoInputs.cache
+    -   -   -           -   NoteKeeperAPI.Application.assets.cache
+    -   -   -           -   NoteKeeperAPI.Application.csproj.AssemblyReference.cache
+    -   -   -           -   NoteKeeperAPI.Application.csproj.BuildWithSkipAnalyzers
+    -   -   -           -   NoteKeeperAPI.Application.csproj.CoreCompileInputs.cache
+    -   -   -           -   NoteKeeperAPI.Application.csproj.FileListAbsolute.txt
+    -   -   -           -   NoteKeeperAPI.Application.dll
+    -   -   -           -   NoteKeeperAPI.Application.GeneratedMSBuildEditorConfig.editorconfig
+    -   -   -           -   NoteKeeperAPI.Application.GlobalUsings.g.cs
+    -   -   -           -   NoteKeeperAPI.Application.pdb
+    -   -   -           -   NoteKeeperAPI.Application.sourcelink.json
+    -   -   -           -   
+    -   -   -           +¦¦¦ref
+    -   -   -           -       NoteKeeperAPI.Application.dll
+    -   -   -           -       
+    -   -   -           L¦¦¦refint
+    -   -   -                   NoteKeeperAPI.Application.dll
+    -   -   -                   
+    -   -   +¦¦¦Repositories
+    -   -   -   -   IReadRepository.cs
+    -   -   -   -   IRepository.cs
+    -   -   -   -   IWriteRepository.cs
+    -   -   -   -   
+    -   -   -   L¦¦¦Notes
+    -   -   -           INotesReadRepository.cs
+    -   -   -           INotesWriteRepository.cs
+    -   -   -           
+    -   -   L¦¦¦Validators
+    -   -       L¦¦¦Notes
+    -   -               CreateNoteValidator.cs
+    -   -               
+    -   L¦¦¦NoteKeeperAPI.Domain
+    -       -   NoteKeeperAPI.Domain.csproj
+    -       -   
+    -       +¦¦¦bin
+    -       -   L¦¦¦Debug
+    -       -       L¦¦¦net8.0
+    -       -               NoteKeeperAPI.Domain.deps.json
+    -       -               NoteKeeperAPI.Domain.dll
+    -       -               NoteKeeperAPI.Domain.pdb
+    -       -               
+    -       +¦¦¦Entities
+    -       -   -   Note.cs
+    -       -   -   
+    -       -   +¦¦¦Common
+    -       -   -       BaseEntity.cs
+    -       -   -       
+    -       -   L¦¦¦Identity
+    -       -           AppRole.cs
+    -       -           AppUser.cs
+    -       -           
+    -       L¦¦¦obj
+    -           -   NoteKeeperAPI.Domain.csproj.nuget.dgspec.json
+    -           -   NoteKeeperAPI.Domain.csproj.nuget.g.props
+    -           -   NoteKeeperAPI.Domain.csproj.nuget.g.targets
+    -           -   project.assets.json
+    -           -   project.nuget.cache
+    -           -   
+    -           L¦¦¦Debug
+    -               L¦¦¦net8.0
+    -                   -   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+    -                   -   NoteKeeperAPI.Domain.AssemblyInfo.cs
+    -                   -   NoteKeeperAPI.Domain.AssemblyInfoInputs.cache
+    -                   -   NoteKeeperAPI.Domain.assets.cache
+    -                   -   NoteKeeperAPI.Domain.csproj.AssemblyReference.cache
+    -                   -   NoteKeeperAPI.Domain.csproj.BuildWithSkipAnalyzers
+    -                   -   NoteKeeperAPI.Domain.csproj.CoreCompileInputs.cache
+    -                   -   NoteKeeperAPI.Domain.csproj.FileListAbsolute.txt
+    -                   -   NoteKeeperAPI.Domain.dll
+    -                   -   NoteKeeperAPI.Domain.GeneratedMSBuildEditorConfig.editorconfig
+    -                   -   NoteKeeperAPI.Domain.GlobalUsings.g.cs
+    -                   -   NoteKeeperAPI.Domain.pdb
+    -                   -   NoteKeeperAPI.Domain.sourcelink.json
+    -                   -   
+    -                   +¦¦¦ref
+    -                   -       NoteKeeperAPI.Domain.dll
+    -                   -       
+    -                   L¦¦¦refint
+    -                           NoteKeeperAPI.Domain.dll
+    -                           
+    +¦¦¦Infrastracture
+    -   +¦¦¦NoteKeeperAPI.Infrastracture
+    -   -   -   NoteKeeperAPI.Infrastracture.csproj
+    -   -   -   ServiceRegistration.cs
+    -   -   -   
+    -   -   +¦¦¦bin
+    -   -   -   L¦¦¦Debug
+    -   -   -       L¦¦¦net8.0
+    -   -   -               NoteKeeperAPI.Application.dll
+    -   -   -               NoteKeeperAPI.Application.pdb
+    -   -   -               NoteKeeperAPI.Domain.dll
+    -   -   -               NoteKeeperAPI.Domain.pdb
+    -   -   -               NoteKeeperAPI.Infrastracture.deps.json
+    -   -   -               NoteKeeperAPI.Infrastracture.dll
+    -   -   -               NoteKeeperAPI.Infrastracture.pdb
+    -   -   -               
+    -   -   +¦¦¦obj
+    -   -   -   -   NoteKeeperAPI.Infrastracture.csproj.nuget.dgspec.json
+    -   -   -   -   NoteKeeperAPI.Infrastracture.csproj.nuget.g.props
+    -   -   -   -   NoteKeeperAPI.Infrastracture.csproj.nuget.g.targets
+    -   -   -   -   project.assets.json
+    -   -   -   -   project.nuget.cache
+    -   -   -   -   
+    -   -   -   L¦¦¦Debug
+    -   -   -       L¦¦¦net8.0
+    -   -   -           -   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+    -   -   -           -   NoteKeep.5351B714.Up2Date
+    -   -   -           -   NoteKeeperAPI.Infrastracture.AssemblyInfo.cs
+    -   -   -           -   NoteKeeperAPI.Infrastracture.AssemblyInfoInputs.cache
+    -   -   -           -   NoteKeeperAPI.Infrastracture.assets.cache
+    -   -   -           -   NoteKeeperAPI.Infrastracture.csproj.AssemblyReference.cache
+    -   -   -           -   NoteKeeperAPI.Infrastracture.csproj.BuildWithSkipAnalyzers
+    -   -   -           -   NoteKeeperAPI.Infrastracture.csproj.CoreCompileInputs.cache
+    -   -   -           -   NoteKeeperAPI.Infrastracture.csproj.FileListAbsolute.txt
+    -   -   -           -   NoteKeeperAPI.Infrastracture.dll
+    -   -   -           -   NoteKeeperAPI.Infrastracture.GeneratedMSBuildEditorConfig.editorconfig
+    -   -   -           -   NoteKeeperAPI.Infrastracture.GlobalUsings.g.cs
+    -   -   -           -   NoteKeeperAPI.Infrastracture.pdb
+    -   -   -           -   NoteKeeperAPI.Infrastracture.sourcelink.json
+    -   -   -           -   
+    -   -   -           +¦¦¦ref
+    -   -   -           -       NoteKeeperAPI.Infrastracture.dll
+    -   -   -           -       
+    -   -   -           L¦¦¦refint
+    -   -   -                   NoteKeeperAPI.Infrastracture.dll
+    -   -   -                   
+    -   -   L¦¦¦Services
+    -   -       L¦¦¦TokenConcrete
+    -   -               TokenHandler.cs
+    -   -               
+    -   L¦¦¦NoteKeeperAPI.Persistence
+    -       -   Configuration.cs
+    -       -   DesignTimeDbContextFactory.cs
+    -       -   NoteKeeperAPI.Persistence.csproj
+    -       -   ServiceRegistration.cs
+    -       -   
+    -       +¦¦¦bin
+    -       -   L¦¦¦Debug
+    -       -       L¦¦¦net8.0
+    -       -               NoteKeeperAPI.Application.dll
+    -       -               NoteKeeperAPI.Application.pdb
+    -       -               NoteKeeperAPI.Domain.dll
+    -       -               NoteKeeperAPI.Domain.pdb
+    -       -               NoteKeeperAPI.Persistence.deps.json
+    -       -               NoteKeeperAPI.Persistence.dll
+    -       -               NoteKeeperAPI.Persistence.pdb
+    -       -               NoteKeeperAPI.Persistence.runtimeconfig.json
+    -       -               
+    -       +¦¦¦Contexts
+    -       -       NoteKeeperAPIDbContext.cs
+    -       -       
+    -       +¦¦¦Migrations
+    -       -       20250526221402_mig_1.cs
+    -       -       20250526221402_mig_1.Designer.cs
+    -       -       20250527091414_mig_2.cs
+    -       -       20250527091414_mig_2.Designer.cs
+    -       -       20250530122508_mig_3.cs
+    -       -       20250530122508_mig_3.Designer.cs
+    -       -       20250611112218_mig_4.cs
+    -       -       20250611112218_mig_4.Designer.cs
+    -       -       NoteKeeperAPIDbContextModelSnapshot.cs
+    -       -       
+    -       +¦¦¦obj
+    -       -   -   NoteKeeperAPI.Persistence.csproj.nuget.dgspec.json
+    -       -   -   NoteKeeperAPI.Persistence.csproj.nuget.g.props
+    -       -   -   NoteKeeperAPI.Persistence.csproj.nuget.g.targets
+    -       -   -   project.assets.json
+    -       -   -   project.nuget.cache
+    -       -   -   
+    -       -   L¦¦¦Debug
+    -       -       L¦¦¦net8.0
+    -       -           -   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+    -       -           -   NoteKeep.1526515C.Up2Date
+    -       -           -   NoteKeeperAPI.Persistence.AssemblyInfo.cs
+    -       -           -   NoteKeeperAPI.Persistence.AssemblyInfoInputs.cache
+    -       -           -   NoteKeeperAPI.Persistence.assets.cache
+    -       -           -   NoteKeeperAPI.Persistence.csproj.AssemblyReference.cache
+    -       -           -   NoteKeeperAPI.Persistence.csproj.BuildWithSkipAnalyzers
+    -       -           -   NoteKeeperAPI.Persistence.csproj.CoreCompileInputs.cache
+    -       -           -   NoteKeeperAPI.Persistence.csproj.FileListAbsolute.txt
+    -       -           -   NoteKeeperAPI.Persistence.dll
+    -       -           -   NoteKeeperAPI.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+    -       -           -   NoteKeeperAPI.Persistence.genruntimeconfig.cache
+    -       -           -   NoteKeeperAPI.Persistence.GlobalUsings.g.cs
+    -       -           -   NoteKeeperAPI.Persistence.pdb
+    -       -           -   NoteKeeperAPI.Persistence.sourcelink.json
+    -       -           -   
+    -       -           +¦¦¦ref
+    -       -           -       NoteKeeperAPI.Persistence.dll
+    -       -           -       
+    -       -           L¦¦¦refint
+    -       -                   NoteKeeperAPI.Persistence.dll
+    -       -                   
+    -       +¦¦¦Repositories
+    -       -   -   ReadRepository.cs
+    -       -   -   WriteRepository.cs
+    -       -   -   
+    -       -   L¦¦¦Notes
+    -       -           NotesReadRepository.cs
+    -       -           NotesWriteRepository.cs
+    -       -           
+    -       L¦¦¦Services
+    -               AuthService.cs
+    -               UserService.cs
+    -               
+    +¦¦¦NoteKeeper.API
+    -   -   appsettings.Development.json
+    -   -   appsettings.json
+    -   -   NoteKeeper.API.csproj
+    -   -   NoteKeeper.API.csproj.user
+    -   -   NoteKeeper.API.http
+    -   -   Program.cs
+    -   -   WeatherForecast.cs
+    -   -   
+    -   +¦¦¦bin
+    -   -   L¦¦¦Debug
+    -   -       L¦¦¦net8.0
+    -   +¦¦¦Controllers
+    -   -       WeatherForecastController.cs
+    -   -       
+    -   +¦¦¦obj
+    -   -   -   NoteKeeper.API.csproj.nuget.dgspec.json
+    -   -   -   NoteKeeper.API.csproj.nuget.g.props
+    -   -   -   NoteKeeper.API.csproj.nuget.g.targets
+    -   -   -   project.assets.json
+    -   -   -   project.nuget.cache
+    -   -   -   
+    -   -   L¦¦¦Debug
+    -   -       L¦¦¦net8.0
+    -   -           -   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+    -   -           -   NoteKeeper.API.AssemblyInfo.cs
+    -   -           -   NoteKeeper.API.AssemblyInfoInputs.cache
+    -   -           -   NoteKeeper.API.assets.cache
+    -   -           -   NoteKeeper.API.csproj.AssemblyReference.cache
+    -   -           -   NoteKeeper.API.GeneratedMSBuildEditorConfig.editorconfig
+    -   -           -   NoteKeeper.API.GlobalUsings.g.cs
+    -   -           -   rpswa.dswa.cache.json
+    -   -           -   staticwebassets.removed.txt
+    -   -           -   
+    -   -           +¦¦¦ref
+    -   -           +¦¦¦refint
+    -   -           L¦¦¦staticwebassets
+    -   L¦¦¦Properties
+    -           launchSettings.json
+    -           
+    +¦¦¦NoteKeeperAPI
+    -   -   appsettings.Development.json
+    -   -   appsettings.json
+    -   -   NoteKeeperAPI.csproj
+    -   -   NoteKeeperAPI.csproj.user
+    -   -   Program.cs
+    -   -   
+    -   +¦¦¦bin
+    -   -   L¦¦¦Debug
+    -   -       L¦¦¦net8.0
+    -   +¦¦¦obj
+    -   -   -   NoteKeeperAPI.csproj.nuget.dgspec.json
+    -   -   -   NoteKeeperAPI.csproj.nuget.g.props
+    -   -   -   NoteKeeperAPI.csproj.nuget.g.targets
+    -   -   -   project.assets.json
+    -   -   -   project.nuget.cache
+    -   -   -   
+    -   -   L¦¦¦Debug
+    -   -       L¦¦¦net8.0
+    -   -           -   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+    -   -           -   NoteKeeperAPI.AssemblyInfo.cs
+    -   -           -   NoteKeeperAPI.AssemblyInfoInputs.cache
+    -   -           -   NoteKeeperAPI.assets.cache
+    -   -           -   NoteKeeperAPI.GeneratedMSBuildEditorConfig.editorconfig
+    -   -           -   NoteKeeperAPI.GlobalUsings.g.cs
+    -   -           -   rpswa.dswa.cache.json
+    -   -           -   staticwebassets.removed.txt
+    -   -           -   
+    -   -           +¦¦¦ref
+    -   -           +¦¦¦refint
+    -   -           L¦¦¦staticwebassets
+    -   L¦¦¦Properties
+    -           launchSettings.json
+    -           
+    L¦¦¦Presentation
+        L¦¦¦NoteKeeperAPI.API
+            -   appsettings.Development.json
+            -   appsettings.json
+            -   NoteKeeperAPI.API.csproj
+            -   NoteKeeperAPI.API.csproj.user
+            -   NoteKeeperAPI.API.http
+            -   Program.cs
+            -   
+            +¦¦¦bin
+            -   L¦¦¦Debug
+            -       L¦¦¦net8.0
+            -           -   appsettings.Development.json
+            -           -   appsettings.json
+            -           -   dotnet-aspnet-codegenerator-design.dll
+            -           -   FluentValidation.dll
+            -           -   Humanizer.dll
+            -           -   MediatR.Contracts.dll
+            -           -   MediatR.dll
+            -           -   MediatR.Extensions.Microsoft.DependencyInjection.dll
+            -           -   Microsoft.AspNetCore.Authentication.JwtBearer.dll
+            -           -   Microsoft.AspNetCore.Cryptography.Internal.dll
+            -           -   Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+            -           -   Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+            -           -   Microsoft.AspNetCore.Razor.Language.dll
+            -           -   Microsoft.Bcl.AsyncInterfaces.dll
+            -           -   Microsoft.Build.dll
+            -           -   Microsoft.Build.Framework.dll
+            -           -   Microsoft.CodeAnalysis.AnalyzerUtilities.dll
+            -           -   Microsoft.CodeAnalysis.CSharp.dll
+            -           -   Microsoft.CodeAnalysis.CSharp.Features.dll
+            -           -   Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+            -           -   Microsoft.CodeAnalysis.dll
+            -           -   Microsoft.CodeAnalysis.Elfie.dll
+            -           -   Microsoft.CodeAnalysis.Features.dll
+            -           -   Microsoft.CodeAnalysis.Razor.dll
+            -           -   Microsoft.CodeAnalysis.Scripting.dll
+            -           -   Microsoft.CodeAnalysis.Workspaces.dll
+            -           -   Microsoft.DiaSymReader.dll
+            -           -   Microsoft.DotNet.Scaffolding.Shared.dll
+            -           -   Microsoft.EntityFrameworkCore.Abstractions.dll
+            -           -   Microsoft.EntityFrameworkCore.Design.dll
+            -           -   Microsoft.EntityFrameworkCore.dll
+            -           -   Microsoft.EntityFrameworkCore.Relational.dll
+            -           -   Microsoft.Extensions.Caching.Memory.dll
+            -           -   Microsoft.Extensions.Configuration.FileExtensions.dll
+            -           -   Microsoft.Extensions.Configuration.Json.dll
+            -           -   Microsoft.Extensions.DependencyInjection.Abstractions.dll
+            -           -   Microsoft.Extensions.DependencyInjection.dll
+            -           -   Microsoft.Extensions.DependencyModel.dll
+            -           -   Microsoft.Extensions.Diagnostics.Abstractions.dll
+            -           -   Microsoft.Extensions.Hosting.Abstractions.dll
+            -           -   Microsoft.Extensions.Identity.Core.dll
+            -           -   Microsoft.Extensions.Identity.Stores.dll
+            -           -   Microsoft.Extensions.Logging.Abstractions.dll
+            -           -   Microsoft.Extensions.Logging.dll
+            -           -   Microsoft.Extensions.ObjectPool.dll
+            -           -   Microsoft.Extensions.Options.dll
+            -           -   Microsoft.Extensions.WebEncoders.dll
+            -           -   Microsoft.IdentityModel.Abstractions.dll
+            -           -   Microsoft.IdentityModel.JsonWebTokens.dll
+            -           -   Microsoft.IdentityModel.Logging.dll
+            -           -   Microsoft.IdentityModel.Protocols.dll
+            -           -   Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+            -           -   Microsoft.IdentityModel.Tokens.dll
+            -           -   Microsoft.NET.StringTools.dll
+            -           -   Microsoft.OpenApi.dll
+            -           -   Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+            -           -   Microsoft.VisualStudio.Web.CodeGeneration.dll
+            -           -   Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+            -           -   Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+            -           -   Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+            -           -   Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+            -           -   Mono.TextTemplating.dll
+            -           -   Newtonsoft.Json.dll
+            -           -   NoteKeeperAPI.API.deps.json
+            -           -   NoteKeeperAPI.API.dll
+            -           -   NoteKeeperAPI.API.exe
+            -           -   NoteKeeperAPI.API.pdb
+            -           -   NoteKeeperAPI.API.runtimeconfig.json
+            -           -   NoteKeeperAPI.API.staticwebassets.endpoints.json
+            -           -   NoteKeeperAPI.Application.dll
+            -           -   NoteKeeperAPI.Application.pdb
+            -           -   NoteKeeperAPI.Domain.dll
+            -           -   NoteKeeperAPI.Domain.pdb
+            -           -   NoteKeeperAPI.Infrastracture.dll
+            -           -   NoteKeeperAPI.Infrastracture.pdb
+            -           -   NoteKeeperAPI.Persistence.dll
+            -           -   NoteKeeperAPI.Persistence.pdb
+            -           -   Npgsql.dll
+            -           -   Npgsql.EntityFrameworkCore.PostgreSQL.dll
+            -           -   NuGet.Common.dll
+            -           -   NuGet.Configuration.dll
+            -           -   NuGet.DependencyResolver.Core.dll
+            -           -   NuGet.Frameworks.dll
+            -           -   NuGet.LibraryModel.dll
+            -           -   NuGet.Packaging.dll
+            -           -   NuGet.ProjectModel.dll
+            -           -   NuGet.Protocol.dll
+            -           -   NuGet.Versioning.dll
+            -           -   Swashbuckle.AspNetCore.Swagger.dll
+            -           -   Swashbuckle.AspNetCore.SwaggerGen.dll
+            -           -   Swashbuckle.AspNetCore.SwaggerUI.dll
+            -           -   System.CodeDom.dll
+            -           -   System.Composition.AttributedModel.dll
+            -           -   System.Composition.Convention.dll
+            -           -   System.Composition.Hosting.dll
+            -           -   System.Composition.Runtime.dll
+            -           -   System.Composition.TypedParts.dll
+            -           -   System.Configuration.ConfigurationManager.dll
+            -           -   System.Diagnostics.EventLog.dll
+            -           -   System.IdentityModel.Tokens.Jwt.dll
+            -           -   System.Reflection.MetadataLoadContext.dll
+            -           -   System.Security.Cryptography.Pkcs.dll
+            -           -   System.Security.Cryptography.ProtectedData.dll
+            -           -   System.Security.Cryptography.Xml.dll
+            -           -   
+            -           +¦¦¦af
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦ar
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦az
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦bg
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦bn-BD
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦cs
+            -           -       Humanizer.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦da
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦de
+            -           -       Humanizer.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦el
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦es
+            -           -       Humanizer.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦fa
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦fi-FI
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦fr
+            -           -       Humanizer.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦fr-BE
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦he
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦hr
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦hu
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦hy
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦id
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦is
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦it
+            -           -       Humanizer.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦ja
+            -           -       Humanizer.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦ko
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦ko-KR
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦ku
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦lv
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦ms-MY
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦mt
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦nb
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦nb-NO
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦nl
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦pl
+            -           -       Humanizer.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦pt
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦pt-BR
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦ro
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦ru
+            -           -       Humanizer.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦runtimes
+            -           -   L¦¦¦win
+            -           -       L¦¦¦lib
+            -           -           L¦¦¦net8.0
+            -           -                   System.Diagnostics.EventLog.dll
+            -           -                   System.Security.Cryptography.Pkcs.dll
+            -           -                   
+            -           +¦¦¦sk
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦sl
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦sr
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦sr-Latn
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦sv
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦th-TH
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦tr
+            -           -       Humanizer.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           +¦¦¦uk
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦uz-Cyrl-UZ
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦uz-Latn-UZ
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦vi
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦zh-CN
+            -           -       Humanizer.resources.dll
+            -           -       
+            -           +¦¦¦zh-Hans
+            -           -       Humanizer.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.resources.dll
+            -           -       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -           -       Microsoft.CodeAnalysis.Features.resources.dll
+            -           -       Microsoft.CodeAnalysis.resources.dll
+            -           -       Microsoft.CodeAnalysis.Scripting.resources.dll
+            -           -       Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -           -       
+            -           L¦¦¦zh-Hant
+            -                   Humanizer.resources.dll
+            -                   Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+            -                   Microsoft.CodeAnalysis.CSharp.resources.dll
+            -                   Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+            -                   Microsoft.CodeAnalysis.Features.resources.dll
+            -                   Microsoft.CodeAnalysis.resources.dll
+            -                   Microsoft.CodeAnalysis.Scripting.resources.dll
+            -                   Microsoft.CodeAnalysis.Workspaces.resources.dll
+            -                   
+            +¦¦¦Controller
+            -       NotesController.cs
+            -       UsersController.cs
+            -       
+            +¦¦¦Controllers
+            +¦¦¦obj
+            -   -   NoteKeeperAPI.API.csproj.nuget.dgspec.json
+            -   -   NoteKeeperAPI.API.csproj.nuget.g.props
+            -   -   NoteKeeperAPI.API.csproj.nuget.g.targets
+            -   -   project.assets.json
+            -   -   project.nuget.cache
+            -   -   
+            -   L¦¦¦Debug
+            -       L¦¦¦net8.0
+            -           -   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+            -           -   ApiEndpoints.json
+            -           -   apphost.exe
+            -           -   NoteKeep.1F45F9FE.Up2Date
+            -           -   NoteKeeperAPI.API.AssemblyInfo.cs
+            -           -   NoteKeeperAPI.API.AssemblyInfoInputs.cache
+            -           -   NoteKeeperAPI.API.assets.cache
+            -           -   NoteKeeperAPI.API.csproj.AssemblyReference.cache
+            -           -   NoteKeeperAPI.API.csproj.BuildWithSkipAnalyzers
+            -           -   NoteKeeperAPI.API.csproj.CoreCompileInputs.cache
+            -           -   NoteKeeperAPI.API.csproj.FileListAbsolute.txt
+            -           -   NoteKeeperAPI.API.dll
+            -           -   NoteKeeperAPI.API.GeneratedMSBuildEditorConfig.editorconfig
+            -           -   NoteKeeperAPI.API.genruntimeconfig.cache
+            -           -   NoteKeeperAPI.API.GlobalUsings.g.cs
+            -           -   NoteKeeperAPI.API.MvcApplicationPartsAssemblyInfo.cache
+            -           -   NoteKeeperAPI.API.MvcApplicationPartsAssemblyInfo.cs
+            -           -   NoteKeeperAPI.API.pdb
+            -           -   NoteKeeperAPI.API.sourcelink.json
+            -           -   rbcswa.dswa.cache.json
+            -           -   rjsmcshtml.dswa.cache.json
+            -           -   rjsmrazor.dswa.cache.json
+            -           -   rpswa.dswa.cache.json
+            -           -   staticwebassets.build.endpoints.json
+            -           -   staticwebassets.build.json
+            -           -   staticwebassets.build.json.cache
+            -           -   staticwebassets.references.upToDateCheck.txt
+            -           -   staticwebassets.removed.txt
+            -           -   
+            -           +¦¦¦EndpointInfo
+            -           -       NoteKeeperAPI.API.json
+            -           -       NoteKeeperAPI.API.OpenApiFiles.cache
+            -           -       
+            -           +¦¦¦ref
+            -           -       NoteKeeperAPI.API.dll
+            -           -       
+            -           +¦¦¦refint
+            -           -       NoteKeeperAPI.API.dll
+            -           -       
+            -           L¦¦¦staticwebassets
+            L¦¦¦Properties
+                    launchSettings.json
+                    

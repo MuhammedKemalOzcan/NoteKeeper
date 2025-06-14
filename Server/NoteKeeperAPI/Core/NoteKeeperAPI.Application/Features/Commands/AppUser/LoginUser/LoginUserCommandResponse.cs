@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NoteKeeperAPI.Application.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace NoteKeeperAPI.Application.Features.Commands.AppUser.LoginUser
 {
     public class LoginUserCommandResponse
     {
-
+        public Token Token { get; set; }
+        public string Message { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using NoteKeeperAPI.Application.Abstraction.Services;
 using NoteKeeperAPI.Application.Repositories.Notes;
-using NoteKeeperAPI.Application.Services;
 using NoteKeeperAPI.Domain.Entities.Identity;
 using NoteKeeperAPI.Persistence.Contexts;
 using NoteKeeperAPI.Persistence.Repositories.Notes;
@@ -34,6 +34,7 @@ namespace NoteKeeperAPI.Persistence
             services.AddScoped<INotesReadRepository, NotesReadRepository>();
             services.AddScoped<INotesWriteRepository, NotesWriteRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

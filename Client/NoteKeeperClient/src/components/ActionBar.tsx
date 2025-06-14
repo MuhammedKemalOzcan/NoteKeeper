@@ -10,7 +10,6 @@ export default function ActionBar({ type }: Props) {
   const { deleteNote, patchNote } = useNotes();
   const { id } = useParams();
   const navigate = useNavigate();
-  console.log(id);
 
   const handleDelete = async () => {
     await deleteNote(id);

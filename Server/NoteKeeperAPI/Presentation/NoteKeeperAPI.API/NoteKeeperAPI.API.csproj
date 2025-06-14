@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\NoteKeeperAPI.Application\NoteKeeperAPI.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastracture\NoteKeeperAPI.Infrastracture\NoteKeeperAPI.Infrastracture.csproj" />
     <ProjectReference Include="..\..\Infrastracture\NoteKeeperAPI.Persistence\NoteKeeperAPI.Persistence.csproj" />
   </ItemGroup>
 

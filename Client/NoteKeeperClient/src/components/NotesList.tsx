@@ -2,7 +2,6 @@ import { NavLink, useNavigate } from "react-router";
 import { dateFormater } from "../utils/format";
 import type { Notes } from "../types/notes";
 import { Plus } from "lucide-react";
-import { useNotes } from "../context/NoteContext";
 
 interface Props {
   notes: Notes[];
@@ -26,6 +25,7 @@ const NotesList = ({ notes, type = "active" }: Props) => {
 
   const currentConfig = config[type];
   const filteredNotes = notes.filter(currentConfig.filter);
+  
 
   return (
     <div className="p-4 max-lg:w-full flex flex-col lg:border-r h-screen relative">

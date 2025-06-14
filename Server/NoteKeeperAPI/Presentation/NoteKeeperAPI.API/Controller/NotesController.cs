@@ -1,30 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NoteKeeperAPI.Application.DTO.Notes;
+using NoteKeeperAPI.Application.Features.Queries.GetNotes;
 using NoteKeeperAPI.Application.Repositories.Notes;
 using NoteKeeperAPI.Domain.Entities;
-using NoteKeeperAPI.Persistence.Contexts;
-using System.Net;
+using System.Security.Claims;
 
 namespace NoteKeeperAPI.API.Controller
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class NotesController : ControllerBase
     {
         private readonly INotesReadRepository _notesReadRepository;
         private readonly INotesWriteRepository _notesWriteRepository;
-        public NotesController(INotesReadRepository notesReadRepository, INotesWriteRepository notesWriteRepository)
+        readonly IMediator _mediator;
+        public NotesController(INotesReadRepository notesReadRepository, INotesWriteRepository notesWriteRepository, IMediator mediator)
         {
             _notesReadRepository = notesReadRepository;
             _notesWriteRepository = notesWriteRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] GetAllNotesRequest getAllNotesRequest )
         {
-            var notes = _notesReadRepository.GetAll(false);
-            return Ok(notes);
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized();
+
+
+            GetAllNotesResponse response = await _mediator.Send(getAllNotesRequest);
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
