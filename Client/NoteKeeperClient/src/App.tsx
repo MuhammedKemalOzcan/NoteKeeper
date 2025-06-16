@@ -12,11 +12,16 @@ import ArchivedNoteDetail from "./pages/ArchivedNoteDetail";
 import CreateNote from "./components/CreateNote";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "notes",

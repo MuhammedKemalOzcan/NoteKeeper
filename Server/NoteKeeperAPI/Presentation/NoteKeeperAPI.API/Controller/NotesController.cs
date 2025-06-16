@@ -47,6 +47,11 @@ namespace NoteKeeperAPI.API.Controller
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateNoteDto createNote)
         {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized();
+
             var note = new Note
             {
                 Title = createNote.Title,

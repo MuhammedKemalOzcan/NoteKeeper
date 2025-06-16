@@ -28,7 +28,7 @@ const NotesList = ({ notes, type = "active" }: Props) => {
   
 
   return (
-    <div className="p-4 max-lg:w-full flex flex-col lg:border-r h-screen relative">
+    <div className="p-4 max-lg:w-full w-full flex flex-col lg:border-r h-screen">
       <h1 className="lg:hidden mb-4">{currentConfig.title}</h1>
       <button
         onClick={() => navigate("/notes/create")}
@@ -50,7 +50,7 @@ const NotesList = ({ notes, type = "active" }: Props) => {
       ))}
       <button
         onClick={() => navigate("/notes/create")}
-        className="absolute bottom-40 right-10 bg-blue-500 p-3 rounded-full drop-shadow-lg lg:hidden "
+        className=" bottom-40 right-10 bg-blue-500 p-3 rounded-full drop-shadow-lg lg:hidden "
       >
         <Plus className="text-white" />
       </button>

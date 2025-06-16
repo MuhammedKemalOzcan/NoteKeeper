@@ -1,14 +1,11 @@
-import axios from "axios";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
-
-type LoginData = {
-  usernameOrEmail: string;
-  password: string;
-};
+import type { User } from "../types/User";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -20,26 +17,14 @@ export default function Login() {
     },
   });
 
-  const onSubmit: SubmitHandler<LoginData> = async (data) => {
+  const onSubmit: SubmitHandler<User> = async (data) => {
     try {
-      const response = await axios.post(
-        "https://localhost:7001/api/Users/Login",
-        data
-      );
-      localStorage.setItem("user", JSON.stringify(response.data.token.accessToken));
-      if (response.status === 201 || response.status === 200) {
-        // Başarılı şekilde kayıt olunduysa login sayfasına yönlendir
-        navigate("/notes");
-        console.log(response.data.token.accessToken);
-      } else {
-        console.log("Kullanıcı adı veya şifre hatalı");
-      }
+      await login(data.usernameOrEmail, data.password);
+      navigate("/notes");
     } catch (error) {
       console.error("Giriş yaparken hata:", error);
       // İstersen burada kullanıcıya hata mesajı gösterebilirsin
     }
-
-    console.log(data);
   };
 
   return (

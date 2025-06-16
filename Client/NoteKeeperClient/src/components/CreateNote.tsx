@@ -90,7 +90,7 @@ function CreateNote() {
         </div>
         <Divider />
         <div className="flex gap-4">
-          <button className="border p-2 rounded-xl bg-blue-500 text-white">
+          <button type="submit" className="border p-2 rounded-xl bg-blue-500 text-white">
             Save Note
           </button>
           <button

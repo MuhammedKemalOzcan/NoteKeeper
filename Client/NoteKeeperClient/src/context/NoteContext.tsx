@@ -1,17 +1,19 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { AddNote, Notes } from "../types/notes";
 import axios from "axios";
+import { useAuth } from "./AuthContext";
 
 type NotesContextType = {
   notes: Notes[];
   setNotes: React.Dispatch<React.SetStateAction<Notes[]>>;
   fetchNotes: () => void;
-  fetchNoteById: (id: string | undefined) => void;
+  fetchNoteById: (id: string | undefined) => Promise<void>;
   addNote: (note: AddNote) => Promise<void>;
   deleteNote: (id: string | undefined) => Promise<void>;
   patchNote: (id: string | undefined, isArchived: boolean) => Promise<void>;
-  note: Notes;
+  note: Notes | undefined;
   setNote: React.Dispatch<React.SetStateAction<Notes | undefined>>;
+  token: string | null;
 };
 
 export const NoteContext = createContext<NotesContextType | undefined>(
@@ -32,48 +34,73 @@ export function NoteContextProvider({
 }) {
   const [notes, setNotes] = useState<Notes[]>([]);
   const [note, setNote] = useState<Notes>();
-  const token = JSON.parse(localStorage.getItem("user") ?? "");
+  const [token, setToken] = useState<string | null>(null);
+  const { user } = useAuth();
+
+  
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+  }, [user]); // Sadece user değiştiğinde token'ı güncelle
+
+  useEffect(() => {
+    if (token) {
+      setNotes([]);
+      setNote(undefined);
+      fetchNotes();
+    } else {
+      setNotes([]);
+      setNote(undefined);
+    }
+  }, [token]); // Token değiştiğinde notları yükle
 
   const fetchNotes = async () => {
-    const response = await axios.get<Notes[]>(
-      "https://localhost:7001/api/Notes",
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
+    if (!token) return;
+
+    const response = await axios.get("https://localhost:7001/api/Notes", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
     setNotes(response.data.notes);
   };
 
-  const fetchNoteById = async (id: string) => {
-    const response = await axios.get<Notes[]>(
-      "https://localhost:7001/api/Notes" + id,
+  const fetchNoteById = async (id: string | undefined) => {
+    if (!id || !token) return;
+    const response = await axios.get<Notes>(
+      "https://localhost:7001/api/Notes/" + id,
       {
         headers: {
           Authorization: "Bearer " + token,
         },
       }
     );
-    setNote(response.data.notes);
+    setNote(response.data);
   };
 
   const addNote = async (note: AddNote) => {
+    if (!token) return;
     const response = await axios.post<Notes>(
       "https://localhost:7001/api/Notes",
-      note
+      note,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
     );
     setNotes((prevNotes) => [...prevNotes, response.data]);
   };
 
   const deleteNote = async (id: string | undefined) => {
-    if (!id) return;
+    if (!id || !token) return;
     await axios.delete("https://localhost:7001/api/Notes/" + id);
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
   };
 
   const patchNote = async (id: string | undefined, isArchived: boolean) => {
-    if (!id) throw new Error("Note ID is required");
+    if (!id || !token) throw new Error("Note ID is required");
     const response = await axios.patch<Notes>(
       `https://localhost:7001/api/Notes`,
       { id, isArchived }
@@ -85,10 +112,6 @@ export function NoteContextProvider({
       prevNotes.map((note) => (note.id === updatedNote.id ? updatedNote : note))
     );
   };
-
-  useEffect(() => {
-    fetchNotes(); // İlk açılışta notları getir
-  }, []);
 
   return (
     <NoteContext.Provider
@@ -102,6 +125,7 @@ export function NoteContextProvider({
         note,
         setNote,
         fetchNoteById,
+        token,
       }}
     >
       {children}{" "}
