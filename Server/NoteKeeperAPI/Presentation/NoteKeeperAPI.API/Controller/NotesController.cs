@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NoteKeeperAPI.Application.DTO.Notes;
+using NoteKeeperAPI.Application.Features.Commands.CreateNotes;
 using NoteKeeperAPI.Application.Features.Queries.GetNotes;
 using NoteKeeperAPI.Application.Repositories.Notes;
 using NoteKeeperAPI.Domain.Entities;
+using System.Net;
 using System.Security.Claims;
 
 namespace NoteKeeperAPI.API.Controller
@@ -45,23 +47,15 @@ namespace NoteKeeperAPI.API.Controller
             return Ok(note);
         }
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateNoteDto createNote)
+        public async Task<IActionResult> Post([FromBody] CreateNoteCommandRequest createNoteCommandRequest)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(userId))
                 return Unauthorized();
 
-            var note = new Note
-            {
-                Title = createNote.Title,
-                Description = createNote.Description,
-                IsArchived = createNote.IsArchived,
-            };
-
-            await _notesWriteRepository.AddAsync(note);
-            await _notesWriteRepository.SaveAsync();
-            return Ok(note);
+            CreateNoteCommandResponse response = await _mediator.Send(createNoteCommandRequest);
+            return Ok(response);
         }
 
         [HttpPut]

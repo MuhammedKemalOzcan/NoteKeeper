@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using NoteKeeperAPI.Application.DTO.Notes;
 using NoteKeeperAPI.Application.Repositories.Notes;
 using System;
