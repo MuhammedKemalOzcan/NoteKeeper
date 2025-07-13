@@ -38,7 +38,7 @@ function CreateNote() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="p-4 border-r">
+    <form onSubmit={handleSubmit(onSubmit)} className="p-4 border-r h-screen ">
       <div className="flex flex-col gap-4">
         <div>
           <input
@@ -51,7 +51,8 @@ function CreateNote() {
             })}
             type="text"
             placeholder="Enter a title"
-            className="w-full active:none placeholder:text-[24px] placeholder:text-bold placeholder:text-black focus:outline-none"
+            className="w-full active:none placeholder:text-[24px] placeholder:text-bold placeholder:text-black focus:outline-none 
+            dark:bg-[#0E121B] dark:placeholder:text-white"
           />
           <p className="text-red-300">{errors.title?.message}</p>
         </div>
@@ -61,7 +62,7 @@ function CreateNote() {
           <div className="flex gap-20 items-center">
             <h6>Tags</h6>
             <input
-              className="placeholder:text-[14px] w-full focus:outline-none"
+              className="placeholder:text-[14px] w-full focus:outline-none dark:bg-[#0E121B] dark:placeholder:text-white"
               type="text"
               placeholder="Add tags separated by commas (e.g. Work, Planning)"
             />
@@ -84,13 +85,16 @@ function CreateNote() {
             })}
             name="description"
             placeholder="Start typing your note here"
-            className="h-[450px] w-full focus:outline-none "
+            className="h-full w-full focus:outline-none dark:bg-[#0E121B] dark:placeholder:text-white"
           ></textarea>
           <p className="text-red-300">{errors.description?.message}</p>
         </div>
         <Divider />
         <div className="flex gap-4">
-          <button type="submit" className="border p-2 rounded-xl bg-blue-500 text-white">
+          <button
+            type="submit"
+            className="border p-2 rounded-xl bg-blue-500 text-white"
+          >
             Save Note
           </button>
           <button

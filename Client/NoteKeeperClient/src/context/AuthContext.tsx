@@ -27,8 +27,6 @@ export function AuthContextProvider({
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("user1:", user);
-
   useEffect(() => {
     const checkAuthStatus = () => {
       try {
@@ -38,7 +36,6 @@ export function AuthContextProvider({
         if (storedUser && storedToken) {
           setUser(JSON.parse(storedUser));
         }
-        console.log("user2:", user);
       } catch (error) {
         console.error("Error parsing stored user data:", error);
         // Bozuk veri varsa temizle

@@ -1,3 +1,7 @@
 export default function Tags() {
-  return <h1>Tags</h1>;
+  return (
+    <div className="h-screen">
+      <h1>Tags</h1>
+    </div>
+  );
 }

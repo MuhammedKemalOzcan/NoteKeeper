@@ -1,15 +1,8 @@
 import { Settings } from "lucide-react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../context/AuthContext";
 
 function DesktopHeader() {
-  const { logout } = useAuth();
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login")
-  }
   return (
     <div>
       <div className="w-full h-[80px] flex p-6 pb-2 max-lg:hidden justify-between relative ">
@@ -20,13 +13,12 @@ function DesktopHeader() {
             className="border rounded-[4px] p-2 w-[300px] "
             placeholder="Search by title,content or tags"
           />
-          <button>
+          <button onClick={() => navigate("/settings")}>
             <Settings />
           </button>
-          <button onClick={handleLogout}>Logout</button>
         </div>
       </div>
-      <div className="border-b-[2px] max-lg:hidden "></div>
+      <div className="border-b-[2px] dark:border-[#232530] max-lg:hidden "></div>
     </div>
   );
 }

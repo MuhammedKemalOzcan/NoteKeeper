@@ -2,9 +2,11 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
 import type { User } from "../types/User";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../hooks/useTheme";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [theme] = useTheme();
   const { login } = useAuth();
   const {
     register,
@@ -28,8 +30,12 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-[#F3F5F8] w-full h-screen flex flex-col justify-center items-center ">
-      <div className="bg-white px-4 gap-4 py-10 max-sm:w-[90%] max-lg:w-[70%] lg:w-[40%] lg:p-12 flex flex-col items-center rounded-[12px]">
+    <div
+      className={`bg-[#F3F5F8] w-full h-screen flex flex-col justify-center items-center dark:bg-[#2B303B] `}
+    >
+      <div
+        className={`bg-white px-4 gap-4 py-10 max-sm:w-[90%] max-lg:w-[70%] lg:w-[40%] lg:p-12 flex flex-col items-center rounded-[12px] dark:bg-[#0E121B] dark:text-white `}
+      >
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-full flex flex-col gap-4 "
@@ -71,13 +77,13 @@ export default function Login() {
           >
             Login
           </button>
-          <div className="border w-full"></div>
+          <div className="border w-full dark:border-[#232530] "></div>
         </form>
         <p>Or login with:</p>
-        <button className="w-full p-3 text-black border rounded-[8px]">
+        <button className="w-full p-3 text-black border rounded-[8px] dark:text-white">
           Google
         </button>
-        <div className="border w-full"></div>
+        <div className="border w-full dark:border-[#232530]"></div>
         <div className="flex gap-2">
           <p>No account yet?</p>
           <button onClick={() => navigate("/register")}>

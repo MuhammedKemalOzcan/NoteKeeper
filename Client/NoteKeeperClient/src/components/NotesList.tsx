@@ -25,10 +25,10 @@ const NotesList = ({ notes, type = "active" }: Props) => {
 
   const currentConfig = config[type];
   const filteredNotes = notes.filter(currentConfig.filter);
-  
+
 
   return (
-    <div className="p-4 max-lg:w-full w-full flex flex-col lg:border-r h-screen">
+    <div className="p-4 max-lg:w-full w-full flex flex-col lg:border-r dark:border-[#232530] h-screen">
       <h1 className="lg:hidden mb-4">{currentConfig.title}</h1>
       <button
         onClick={() => navigate("/notes/create")}
@@ -44,13 +44,16 @@ const NotesList = ({ notes, type = "active" }: Props) => {
           key={note.id}
         >
           <h3 className="lg:text-left">{note.title}</h3>
-          <h6>{dateFormater.format(new Date(note.createdDate))}</h6>
-          <div className="border-b mt-5"></div>
+          {note.createdDate && (
+            <h6>{dateFormater.format(new Date(note.createdDate))}</h6>
+          )}
+
+          <div className="border-b mt-5 dark:border-[#232530]"></div>
         </NavLink>
       ))}
       <button
         onClick={() => navigate("/notes/create")}
-        className=" bottom-40 right-10 bg-blue-500 p-3 rounded-full drop-shadow-lg lg:hidden "
+        className="absolute bottom-40 right-10 bg-blue-500 p-3 rounded-full drop-shadow-lg lg:hidden "
       >
         <Plus className="text-white" />
       </button>

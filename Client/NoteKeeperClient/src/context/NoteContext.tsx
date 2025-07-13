@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import type { AddNote, Notes } from "../types/notes";
 import axios from "axios";
 import { useAuth } from "./AuthContext";
+import requests from "../api/apiClient";
 
 type NotesContextType = {
   notes: Notes[];
@@ -14,6 +15,7 @@ type NotesContextType = {
   note: Notes | undefined;
   setNote: React.Dispatch<React.SetStateAction<Notes | undefined>>;
   token: string | null;
+  loading: boolean;
 };
 
 export const NoteContext = createContext<NotesContextType | undefined>(
@@ -35,9 +37,8 @@ export function NoteContextProvider({
   const [notes, setNotes] = useState<Notes[]>([]);
   const [note, setNote] = useState<Notes>();
   const [token, setToken] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
   const { user } = useAuth();
-
-  
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -58,39 +59,32 @@ export function NoteContextProvider({
   const fetchNotes = async () => {
     if (!token) return;
 
-    const response = await axios.get("https://localhost:7001/api/Notes", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
-    setNotes(response.data.notes);
+    try {
+      const data = await requests.notes.list();
+      setNotes(data.notes);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const fetchNoteById = async (id: string | undefined) => {
     if (!id || !token) return;
-    const response = await axios.get<Notes>(
-      "https://localhost:7001/api/Notes/" + id,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-    setNote(response.data);
+    const response = await requests.notes.details(id);
+    setNote(response);
   };
 
   const addNote = async (note: AddNote) => {
     if (!token) return;
-    const response = await axios.post<Notes>(
-      "https://localhost:7001/api/Notes",
-      note,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-    setNotes((prevNotes) => [...prevNotes, response.data]);
+    try {
+      const response = await requests.notes.add(note);
+      console.log("Yeni not:", response);
+
+      setNotes((prevNotes) => [...prevNotes, response]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const deleteNote = async (id: string | undefined) => {
@@ -126,6 +120,7 @@ export function NoteContextProvider({
         setNote,
         fetchNoteById,
         token,
+        loading,
       }}
     >
       {children}{" "}
