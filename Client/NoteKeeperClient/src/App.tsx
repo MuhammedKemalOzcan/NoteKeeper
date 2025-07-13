@@ -13,6 +13,10 @@ import CreateNote from "./components/CreateNote";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ColorTheme from "./components/ColorTheme";
+import SettingsLayout from "./layouts/SettingsLayout";
+import FontTheme from "./components/FontTheme";
+import ChangePassword from "./components/ChangePassword";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +46,16 @@ const router = createBrowserRouter([
       },
       { path: "search", element: <Search /> },
       { path: "tags", element: <Tags /> },
-      { path: "settings", element: <Settings /> },
+      {
+        path: "settings",
+        element: <SettingsLayout />,
+        children: [
+          { index: true, element: <Settings /> },
+          { path: "color-theme", element: <ColorTheme /> },
+          { path: "font-theme", element: <FontTheme /> },
+          { path: "change-password", element: <ChangePassword /> },
+        ],
+      },
     ],
   },
   { path: "login", element: <Login /> },

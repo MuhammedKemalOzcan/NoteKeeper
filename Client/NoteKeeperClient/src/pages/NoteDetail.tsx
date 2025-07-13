@@ -17,7 +17,7 @@ export default function NoteDetail() {
   if (loading) return <h1>Loading...</h1>;
 
   return (
-    <div>
+    <div className="h-screen">
       <DisplayNote type="active" note={note} />
     </div>
   );

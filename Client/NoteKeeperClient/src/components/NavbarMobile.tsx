@@ -8,7 +8,7 @@ import {
 import { NavLink } from "react-router";
 
 const links = [
-  { title: "Home", to: "/", icon: House },
+  { title: "Home", to: "/notes", icon: House },
   { title: "Search", to: "/search", icon: Search },
   { title: "Archived", to: "/archived", icon: LucideArchive },
   { title: "Tags", to: "/tags", icon: TagIcon },
@@ -17,7 +17,7 @@ const links = [
 
 export default function NavbarMobile() {
   return (
-      <div className="fixed bottom-0 w-full h-20 flex justify-around items-center border-t p-3 lg:hidden bg-gray-200 ">
+      <div className="bottom-0 w-full h-20 flex justify-around items-center border-t p-3 lg:hidden bg-gray-200 ">
         {links.map((link) => {
           const Icon = link.icon;
           return (

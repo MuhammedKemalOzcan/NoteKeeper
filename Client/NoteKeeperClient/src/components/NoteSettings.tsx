@@ -27,17 +27,17 @@ function NoteSettings({ type }: Props) {
   };
 
   return (
-    <div className="p-4 border-l-[2px] h-screen w-full flex flex-col gap-3 whitespace-nowrap ">
+    <div className="p-4 border-l-[2px] dark:border-[#232530] h-screen w-full flex flex-col gap-3 whitespace-nowrap ">
       {type == "active" ? (
         <button
           onClick={handleArchive}
-          className="flex  gap-2 border border-gray p-4 rounded-[8px] w-full "
+          className="flex  gap-2 border border-gray dark:border-[#232530] p-4 rounded-[8px] w-full "
         >
           <Archive />
           Archive Note
         </button>
       ) : (
-        <button onClick={handleRestore} className="flex  gap-2 border border-gray p-4 rounded-[8px] w-full ">
+        <button onClick={handleRestore} className="flex  gap-2 border border-gray dark:border-[#232530] p-4 rounded-[8px] w-full ">
           <RefreshCcw />
           Restore Note
         </button>
@@ -45,7 +45,7 @@ function NoteSettings({ type }: Props) {
 
       <button
         onClick={handleDelete}
-        className="flex  gap-2 border border-gray p-4 rounded-[8px] w-full "
+        className="flex  gap-2 border border-gray dark:border-[#232530] p-4 rounded-[8px] w-full "
       >
         <Trash2 />
         Delete Note

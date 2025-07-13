@@ -5,7 +5,7 @@ export default function AllNotes() {
   const { notes } = useNotes();
 
   return (
-      <div className="flex">
+      <div className="flex h-auto">
         <NotesList notes={notes} type="active" />
       </div>
   );

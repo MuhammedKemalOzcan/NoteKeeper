@@ -9,8 +9,8 @@ export default function MainLayout() {
   const isMobile = UseIsMobile();
 
   return (
-    <div className="lg:flex lg:p-3 w-full">
-      <div className="lg:w-[20%] lg:h-screen border-r-2">
+    <div className={`lg:flex lg:p-3 w-full dark:bg-[#0E121B] dark:text-white`}>
+      <div className="lg:w-[20%] lg:h-screen border-r-2 dark:border-[#232530]">
         <Header />
         {!isMobile && <NavbarDesktop />}
       </div>
