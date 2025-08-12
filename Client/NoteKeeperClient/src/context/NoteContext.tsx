@@ -16,6 +16,7 @@ type NotesContextType = {
   setNote: React.Dispatch<React.SetStateAction<Notes | undefined>>;
   token: string | null;
   loading: boolean;
+  deleteTag: (id: string | undefined) => Promise<void>;
 };
 
 export const NoteContext = createContext<NotesContextType | undefined>(
@@ -36,6 +37,7 @@ export function NoteContextProvider({
 }) {
   const [notes, setNotes] = useState<Notes[]>([]);
   const [note, setNote] = useState<Notes>();
+  const [filteredNotes, setFilteredNotes] = useState([]);
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
@@ -81,7 +83,17 @@ export function NoteContextProvider({
       const response = await requests.notes.add(note);
       console.log("Yeni not:", response);
 
-      setNotes((prevNotes) => [...prevNotes, response]);
+      const newNote: Notes = {
+        id: response.id,
+        title: response.title,
+        description: response.description,
+        tags: response.tags,
+        createdDate: response.createdDate,
+        updatedDate: response.updatedDate,
+        isArchived: response.isArchived,
+      };
+
+      setNotes((prevNotes) => [...prevNotes, newNote]);
     } catch (error) {
       console.log(error);
     }
@@ -91,6 +103,19 @@ export function NoteContextProvider({
     if (!id || !token) return;
     await axios.delete("https://localhost:7001/api/Notes/" + id);
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
+  };
+
+  const deleteTag = async (id: string | undefined) => {
+    if (!id || !token) return;
+
+    await axios.delete("https://localhost:7001/api/Tag/" + id);
+
+    setNotes((prevNotes) =>
+      prevNotes.map((note) => ({
+        ...note,
+        tags: note.tags.filter((tag) => tag.id !== id),
+      }))
+    );
   };
 
   const patchNote = async (id: string | undefined, isArchived: boolean) => {
@@ -121,6 +146,8 @@ export function NoteContextProvider({
         fetchNoteById,
         token,
         loading,
+
+        deleteTag,
       }}
     >
       {children}{" "}

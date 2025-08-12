@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using NoteKeeperAPI.Application.DTO.Notes;
+using NoteKeeperAPI.Application.DTO.Tags;
 using NoteKeeperAPI.Application.Repositories.Notes;
 using System;
 using System.Collections.Generic;
@@ -29,23 +30,35 @@ namespace NoteKeeperAPI.Application.Features.Queries.GetNotes
             if (string.IsNullOrEmpty(userId))
                 throw new UnauthorizedAccessException("User not authenticated");
 
-            var notes = _notesReadRepository
-           .GetAll(false)
-           .Where(n => n.UserId == userId)
-           .Select(n => new NoteDto
-           {
-               Id = n.Id.ToString(),
-               Title = n.Title,
-               Description = n.Description,
-               IsArchived = n.IsArchived,
-               CreatedDate = n.CreatedDate,
-               UpdatedDate = n.UpdatedDate
-           }).ToList();
+            var notes = await _notesReadRepository
+    .GetWhere(n => n.UserId == userId )
+    .Include(n => n.NoteTags)
+        .ThenInclude(nt => nt.Tag)
+    .ToListAsync(cancellationToken);
 
-            return new()
+
+
+            var noteDtos = notes.Select(note => new NoteDto
             {
-                Notes = notes
+                Id = note.Id.ToString(),
+                Title = note.Title,
+                Description = note.Description,
+                IsArchived = note.IsArchived,
+                CreatedDate = note.CreatedDate,
+                UpdatedDate = note.UpdatedDate,
+                Tags = note.NoteTags.Select(nt => new TagDto
+                {
+                    Id = nt.Tag.Id.ToString(),
+                    TagName = nt.Tag.TagName
+                }).ToList()
+            }).ToList();
+
+
+            return new GetAllNotesResponse
+            {
+                Notes = noteDtos
             };
+
         }
     }
 }

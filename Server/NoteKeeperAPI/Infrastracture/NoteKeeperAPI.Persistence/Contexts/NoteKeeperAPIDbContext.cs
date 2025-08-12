@@ -4,6 +4,7 @@ using NoteKeeperAPI.Domain.Entities;
 using NoteKeeperAPI.Domain.Entities.Common;
 using NoteKeeperAPI.Domain.Entities.Identity;
 using NoteKeeperAPI.Domain.EntityConfiguration;
+using System.Reflection.Emit;
 
 namespace NoteKeeperAPI.Persistence.Contexts
 {
@@ -14,6 +15,8 @@ namespace NoteKeeperAPI.Persistence.Contexts
         }
 
         public DbSet<Note> Notes { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
@@ -37,6 +40,35 @@ namespace NoteKeeperAPI.Persistence.Contexts
             base.OnModelCreating(builder);
 
             builder.ApplyConfiguration(new NoteConfiguration() );
+
+            builder.Entity<NoteTag>()
+            .HasKey(nt => new { nt.NoteId, nt.TagId });
+
+            builder.Entity<NoteTag>()
+                .HasOne(nt => nt.Note)
+                .WithMany(n => n.NoteTags)
+                .HasForeignKey(nt => nt.NoteId);
+
+            builder.Entity<NoteTag>()
+                .HasOne(nt => nt.Tag)
+                .WithMany(t => t.NoteTags)
+                .HasForeignKey(nt => nt.TagId);
+
+            builder.Entity<Tag>()
+        .HasIndex(t => new { t.TagName, t.UserId })
+        .IsUnique()
+        .HasDatabaseName("IX_Tags_TagName_UserId_Unique");
+
+            builder.Entity<Tag>()
+            .HasMany(t => t.NoteTags)
+            .WithOne(nt => nt.Tag)
+            .HasForeignKey(nt => nt.TagId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+
+
+
+
         }
 
 
