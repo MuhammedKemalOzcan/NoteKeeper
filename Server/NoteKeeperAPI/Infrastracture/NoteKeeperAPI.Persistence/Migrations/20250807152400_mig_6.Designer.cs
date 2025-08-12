@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NoteKeeperAPI.Persistence.Contexts;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NoteKeeperAPI.Persistence.Migrations
 {
     [DbContext(typeof(NoteKeeperAPIDbContext))]
-    partial class NoteKeeperAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250807152400_mig_6")]
+    partial class mig_6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,52 +255,6 @@ namespace NoteKeeperAPI.Persistence.Migrations
                     b.ToTable("Notes");
                 });
 
-            modelBuilder.Entity("NoteKeeperAPI.Domain.Entities.NoteTag", b =>
-                {
-                    b.Property<Guid>("NoteId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("TagId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("NoteId", "TagId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("NoteTag");
-                });
-
-            modelBuilder.Entity("NoteKeeperAPI.Domain.Entities.Tag", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("TagName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("TagName", "UserId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Tags_TagName_UserId_Unique");
-
-                    b.ToTable("Tags");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("NoteKeeperAPI.Domain.Entities.Identity.AppRole", null)
@@ -360,49 +317,9 @@ namespace NoteKeeperAPI.Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NoteKeeperAPI.Domain.Entities.NoteTag", b =>
-                {
-                    b.HasOne("NoteKeeperAPI.Domain.Entities.Note", "Note")
-                        .WithMany("NoteTags")
-                        .HasForeignKey("NoteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NoteKeeperAPI.Domain.Entities.Tag", "Tag")
-                        .WithMany("NoteTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Note");
-
-                    b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("NoteKeeperAPI.Domain.Entities.Tag", b =>
-                {
-                    b.HasOne("NoteKeeperAPI.Domain.Entities.Identity.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("NoteKeeperAPI.Domain.Entities.Identity.AppUser", b =>
                 {
                     b.Navigation("Notes");
-                });
-
-            modelBuilder.Entity("NoteKeeperAPI.Domain.Entities.Note", b =>
-                {
-                    b.Navigation("NoteTags");
-                });
-
-            modelBuilder.Entity("NoteKeeperAPI.Domain.Entities.Tag", b =>
-                {
-                    b.Navigation("NoteTags");
                 });
 #pragma warning restore 612, 618
         }

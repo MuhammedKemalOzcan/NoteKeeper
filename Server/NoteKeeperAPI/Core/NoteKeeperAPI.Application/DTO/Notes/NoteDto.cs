@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NoteKeeperAPI.Application.DTO.Tags;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace NoteKeeperAPI.Application.DTO.Notes
         public bool IsArchived { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public List<TagDto> Tags { get; set; }
     }
 }

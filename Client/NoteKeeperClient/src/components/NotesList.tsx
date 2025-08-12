@@ -26,7 +26,6 @@ const NotesList = ({ notes, type = "active" }: Props) => {
   const currentConfig = config[type];
   const filteredNotes = notes.filter(currentConfig.filter);
 
-
   return (
     <div className="p-4 max-lg:w-full w-full flex flex-col lg:border-r dark:border-[#232530] h-screen">
       <h1 className="lg:hidden mb-4">{currentConfig.title}</h1>
@@ -47,6 +46,16 @@ const NotesList = ({ notes, type = "active" }: Props) => {
           {note.createdDate && (
             <h6>{dateFormater.format(new Date(note.createdDate))}</h6>
           )}
+
+          <div className="flex gap-3  grid grid-cols-3">
+            {note.tags?.map((tag) => (
+              <div key={tag.id} className="flex gap-3 text-clip">
+                <p className="flex w-auto h-[30px] whitespace-nowrap border px-2 bg-[#E0E4EA] py-[2px] rounded-[4px] ">
+                  {tag.tagName}
+                </p>
+              </div>
+            ))}
+          </div>
 
           <div className="border-b mt-5 dark:border-[#232530]"></div>
         </NavLink>

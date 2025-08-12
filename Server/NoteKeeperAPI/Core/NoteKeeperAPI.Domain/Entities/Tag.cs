@@ -8,14 +8,11 @@ using System.Threading.Tasks;
 
 namespace NoteKeeperAPI.Domain.Entities
 {
-    public class Note : BaseEntity
+    public class Tag : BaseEntity
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public bool IsArchived { get; set; } = false;
+        public string TagName { get; set; }
         public string UserId { get; set; }
-        public AppUser User{ get; set; }
+        public AppUser User { get; set; }
         public ICollection<NoteTag> NoteTags { get; set; } = new List<NoteTag>();
-
     }
 }

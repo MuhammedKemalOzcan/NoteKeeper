@@ -52,8 +52,8 @@ namespace NoteKeeperAPI.Persistence.Repositories
             var query = Table.AsQueryable();
             if (!tracking)
                 query = query.AsNoTracking();
-            return query;
-            
+            return query.Where(method);
         }
+
     }
 }

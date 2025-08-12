@@ -1,11 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NoteKeeperAPI.Domain.Entities.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using NoteKeeperAPI.Domain.Entities.Common;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NoteKeeperAPI.Application.Repositories
 {

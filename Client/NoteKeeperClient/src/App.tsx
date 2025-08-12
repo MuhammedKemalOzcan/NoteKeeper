@@ -62,6 +62,7 @@ const router = createBrowserRouter([
   { path: "register", element: <Register /> },
 ]);
 
+
 function App() {
   return <RouterProvider router={router} />;
 }

@@ -1,4 +1,3 @@
-// components/ProtectedRoute.tsx
 import { Navigate, useLocation } from "react-router";
 import { useAuth } from "../context/AuthContext"; // Senin AuthContext'ine göre ayarla
 

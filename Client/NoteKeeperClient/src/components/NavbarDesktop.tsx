@@ -1,6 +1,7 @@
-import { ArchiveRestoreIcon, House } from "lucide-react";
+import { ArchiveRestoreIcon, House, Tag, X } from "lucide-react";
 import { Divider } from "./Divider";
 import { NavLink } from "react-router";
+import { useNotes } from "../context/NoteContext";
 
 const links = [
   { title: "All Notes", to: "/notes", icon: House },
@@ -8,6 +9,14 @@ const links = [
 ];
 
 export default function NavbarDesktop() {
+  const { deleteTag, notes } = useNotes();
+
+  const allTags = notes.flatMap((note) => note.tags);
+
+  const handleDelete = async (id: string) => {
+    await deleteTag(id);
+  };
+
   return (
     <div className="flex flex-col gap-4 ">
       <div className="border-r-[2px]"></div>
@@ -29,7 +38,26 @@ export default function NavbarDesktop() {
         );
       })}
       <Divider />
-      <h4>Tags</h4>
+      <div>
+        {allTags.map((tag, index) => {
+          const isExist = allTags.some((t, i) => t.id === tag.id && i < index);
+          if (isExist) return null;
+          return (
+            <div
+              key={tag.id}
+              className="flex items-center justify-between pr-3"
+            >
+              <button className="flex items-center gap-2 ">
+                <Tag size={20} />
+                <p>{tag.tagName}</p>
+              </button>
+              <button onClick={() => handleDelete(tag.id)}>
+                <X size={15} />
+              </button>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

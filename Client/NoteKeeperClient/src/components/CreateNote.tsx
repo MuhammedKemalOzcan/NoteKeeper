@@ -7,6 +7,7 @@ import { useNotes } from "../context/NoteContext";
 type NoteData = {
   title: string;
   description: string;
+  tagName: string[];
 };
 
 function CreateNote() {
@@ -18,18 +19,24 @@ function CreateNote() {
     defaultValues: {
       title: "",
       description: "",
+      tagName: [],
     },
   });
 
+
   const navigate = useNavigate();
-  const { addNote } = useNotes();
+  const { addNote,notes } = useNotes();
+
+
 
   const onSubmit: SubmitHandler<NoteData> = async (data) => {
     await addNote({
       title: data.title,
       description: data.description,
       isArchived: false,
+      tagName: data.tagName,
     });
+
     navigate("/notes");
   };
 
@@ -39,7 +46,7 @@ function CreateNote() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="p-4 border-r h-screen ">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 h-[60%]">
         <div>
           <input
             {...register("title", {
@@ -62,6 +69,7 @@ function CreateNote() {
           <div className="flex gap-20 items-center">
             <h6>Tags</h6>
             <input
+              {...register("tagName")}
               className="placeholder:text-[14px] w-full focus:outline-none dark:bg-[#0E121B] dark:placeholder:text-white"
               type="text"
               placeholder="Add tags separated by commas (e.g. Work, Planning)"
@@ -74,21 +82,21 @@ function CreateNote() {
           <h4 className="text-gray-400 ml-[45px] ">Not yet saved</h4>
         </div>
         <Divider />
-        <div>
-          <textarea
-            {...register("description", {
-              required: "Description Required",
-              minLength: {
-                value: 10,
-                message: "description must contain at least 10 characters",
-              },
-            })}
-            name="description"
-            placeholder="Start typing your note here"
-            className="h-full w-full focus:outline-none dark:bg-[#0E121B] dark:placeholder:text-white"
-          ></textarea>
-          <p className="text-red-300">{errors.description?.message}</p>
-        </div>
+
+        <textarea
+          {...register("description", {
+            required: "Description Required",
+            minLength: {
+              value: 10,
+              message: "description must contain at least 10 characters",
+            },
+          })}
+          name="description"
+          placeholder="Start typing your note here"
+          className="h-full w-full focus:outline-none dark:bg-[#0E121B] dark:placeholder:text-white"
+        ></textarea>
+        <p className="text-red-300">{errors.description?.message}</p>
+
         <Divider />
         <div className="flex gap-4">
           <button
