@@ -7,7 +7,6 @@ import { useTheme } from "../hooks/useTheme";
 export default function Settings() {
   const { logout } = useAuth();
   const navigate = useNavigate();
-  const [theme] = useTheme();
 
   const handleLogout = () => {
     logout();
@@ -16,7 +15,7 @@ export default function Settings() {
 
   return (
     <div
-      className={`flex h-screen lg:w-[25%]`}
+      className={`flex lg:w-[25%] h-screen`}
     >
       <div className="flex flex-col gap-4 m-4 w-full lg:w-full ">
         <h1>Settings</h1>

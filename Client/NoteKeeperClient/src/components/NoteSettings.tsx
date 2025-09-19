@@ -1,19 +1,21 @@
 import { Archive, RefreshCcw, Trash2 } from "lucide-react";
 import { useNotes } from "../context/NoteContext";
 import { useNavigate, useParams } from "react-router";
+import { useState } from "react";
+import DeleteModal from "./DeleteModal";
 
 interface Props {
   type?: "active" | "archived";
 }
 
 function NoteSettings({ type }: Props) {
+  const [isClicked, setIsClicked] = useState(false);
   const { deleteNote, patchNote } = useNotes();
   const { id } = useParams();
   const navigate = useNavigate();
 
   const handleDelete = async () => {
-    await deleteNote(id);
-    navigate("/notes");
+    setIsClicked(true);
   };
 
   const handleArchive = async () => {
@@ -37,7 +39,10 @@ function NoteSettings({ type }: Props) {
           Archive Note
         </button>
       ) : (
-        <button onClick={handleRestore} className="flex  gap-2 border border-gray dark:border-[#232530] p-4 rounded-[8px] w-full ">
+        <button
+          onClick={handleRestore}
+          className="flex  gap-2 border border-gray dark:border-[#232530] p-4 rounded-[8px] w-full "
+        >
           <RefreshCcw />
           Restore Note
         </button>
@@ -50,6 +55,7 @@ function NoteSettings({ type }: Props) {
         <Trash2 />
         Delete Note
       </button>
+      {isClicked === true && <DeleteModal />}
     </div>
   );
 }

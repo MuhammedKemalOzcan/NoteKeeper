@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 h1 {
   font-size: 24px;
   font-weight: bold;
@@ -37,4 +35,26 @@ h6 {
   font-size: 12px;
   line-height: 120%;
   letter-spacing: -0.2px;
+}
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+}
+
+.modal-container {
+  display: flex;
+  width: 40%;
+  height: 30%;
+  flex-direction: column;
+  border-radius: 20px;
+  background-color: white;
+  padding: 20px;
 }

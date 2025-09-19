@@ -1,8 +1,20 @@
 import { Settings } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
 function DesktopHeader() {
   const navigate = useNavigate();
+  const [input, setInput] = useState("");
+  console.log(input);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setInput(e.target.value)
+    if (input.length > 0) {
+      navigate(`?input=${e.target.value}`);
+    }
+  };
+
   return (
     <div>
       <div className="w-full h-[80px] flex p-6 pb-2 max-lg:hidden justify-between relative ">
@@ -12,6 +24,8 @@ function DesktopHeader() {
             type="text"
             className="border rounded-[4px] p-2 w-[300px] "
             placeholder="Search by title,content or tags"
+            value={input}
+            onChange={handleChange}
           />
           <button onClick={() => navigate("/settings")}>
             <Settings />

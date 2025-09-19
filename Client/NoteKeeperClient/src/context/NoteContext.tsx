@@ -37,7 +37,6 @@ export function NoteContextProvider({
 }) {
   const [notes, setNotes] = useState<Notes[]>([]);
   const [note, setNote] = useState<Notes>();
-  const [filteredNotes, setFilteredNotes] = useState([]);
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
@@ -125,7 +124,10 @@ export function NoteContextProvider({
       { id, isArchived }
     );
 
+    console.log("response",response.data);
+
     const updatedNote = response.data;
+    console.log("Patch Response:", updatedNote);
 
     setNotes((prevNotes) =>
       prevNotes.map((note) => (note.id === updatedNote.id ? updatedNote : note))

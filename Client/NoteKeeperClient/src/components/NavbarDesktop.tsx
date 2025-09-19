@@ -1,6 +1,6 @@
 import { ArchiveRestoreIcon, House, Tag, X } from "lucide-react";
 import { Divider } from "./Divider";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { useNotes } from "../context/NoteContext";
 
 const links = [
@@ -9,16 +9,17 @@ const links = [
 ];
 
 export default function NavbarDesktop() {
-  const { deleteTag, notes } = useNotes();
+  const { notes } = useNotes();
+  const navigate = useNavigate();
 
-  const allTags = notes.flatMap((note) => note.tags);
+  const allTags = notes.flatMap((note) => note.tags ?? []);
 
-  const handleDelete = async (id: string) => {
-    await deleteTag(id);
+  const handleFilter = (tagName: string) => {
+    navigate(`/notes?tag=${tagName}`);
   };
 
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-4 h-screen">
       <div className="border-r-[2px]"></div>
       {links.map((link) => {
         const Icon = link.icon;
@@ -37,22 +38,22 @@ export default function NavbarDesktop() {
           </NavLink>
         );
       })}
-      <Divider />
-      <div>
+      <Divider/>
+      <div className="h-[70%] overflow-auto">
         {allTags.map((tag, index) => {
-          const isExist = allTags.some((t, i) => t.id === tag.id && i < index);
+          const isExist = allTags?.some((t, i) => t.id === tag.id && i < index);
           if (isExist) return null;
           return (
             <div
               key={tag.id}
-              className="flex items-center justify-between pr-3"
+              className="flex items-center justify-between pr-3 overflow-auto "
             >
-              <button className="flex items-center gap-2 ">
+              <button
+                onClick={() => handleFilter(tag.tagName)}
+                className="flex items-center gap-2 focus:bg-gray-400 w-full p-3 rounded-[8px] focus:text-blue-900"
+              >
                 <Tag size={20} />
                 <p>{tag.tagName}</p>
-              </button>
-              <button onClick={() => handleDelete(tag.id)}>
-                <X size={15} />
               </button>
             </div>
           );

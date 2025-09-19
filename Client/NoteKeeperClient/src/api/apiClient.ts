@@ -12,6 +12,7 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
+//Hata olduğu takdirde araya girilebilir.
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
