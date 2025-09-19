@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NoteKeeperAPI.Application.DTO.Notes;
+using NoteKeeperAPI.Application.DTO.Tags;
 using NoteKeeperAPI.Application.Features.Commands.CreateNotes;
 using NoteKeeperAPI.Application.Features.Queries.GetNotes;
 using NoteKeeperAPI.Application.Repositories.Notes;
@@ -43,7 +45,7 @@ namespace NoteKeeperAPI.API.Controller
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] string id)
         {
-            Note note = await _notesReadRepository.GetByIdAsync(id,false);
+            Note note = await _notesReadRepository.GetByIdAsync(id, false);
             return Ok(note);
         }
         [HttpPost]
@@ -70,12 +72,33 @@ namespace NoteKeeperAPI.API.Controller
         }
 
         [HttpPatch]
-        public async Task<IActionResult> Patch([FromBody] PatchNoteDto noteDto)
+        public async Task<IActionResult> Patch([FromBody] PatchNoteDto patchNoteDto)
         {
-            Note note = await _notesReadRepository.GetByIdAsync(noteDto.Id);
-            note.IsArchived = noteDto.IsArchived;
+            var note = await _notesReadRepository.Table
+            .Include(n => n.NoteTags)
+            .ThenInclude(nt => nt.Tag)
+            .FirstOrDefaultAsync(n => n.Id.ToString() == patchNoteDto.Id);
+
+
+
+            note.IsArchived = patchNoteDto.IsArchived;
             await _notesWriteRepository.SaveAsync();
-            return Ok(note);
+
+            var noteDto = new NoteDto
+            {
+                Id = note.Id.ToString(),
+                Title = note.Title,
+                Description = note.Description,
+                IsArchived = note.IsArchived,
+                CreatedDate = note.CreatedDate,
+                UpdatedDate = note.UpdatedDate,
+                Tags = note.NoteTags.Select(t => new TagDto
+                {
+                    Id = t.Tag.Id.ToString(),
+                    TagName = t.Tag.TagName
+                }).ToList()
+            };
+            return Ok(noteDto);
         }
 
         [HttpDelete("{id}")]

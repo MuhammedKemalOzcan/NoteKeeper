@@ -31,10 +31,10 @@ namespace NoteKeeperAPI.Application.Features.Queries.GetNotes
                 throw new UnauthorizedAccessException("User not authenticated");
 
             var notes = await _notesReadRepository
-    .GetWhere(n => n.UserId == userId )
-    .Include(n => n.NoteTags)
-        .ThenInclude(nt => nt.Tag)
-    .ToListAsync(cancellationToken);
+            .GetWhere(n => n.UserId == userId )
+            .Include(n => n.NoteTags)
+            .ThenInclude(nt => nt.Tag)
+            .ToListAsync(cancellationToken);
 
 
 

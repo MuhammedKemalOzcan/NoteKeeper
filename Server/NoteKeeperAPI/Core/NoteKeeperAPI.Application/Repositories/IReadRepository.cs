@@ -1,4 +1,5 @@
-﻿using NoteKeeperAPI.Domain.Entities.Common;
+﻿using NoteKeeperAPI.Domain.Entities;
+using NoteKeeperAPI.Domain.Entities.Common;
 using System.Linq.Expressions;
 
 namespace NoteKeeperAPI.Application.Repositories

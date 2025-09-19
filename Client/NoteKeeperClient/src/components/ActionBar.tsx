@@ -27,9 +27,10 @@ export default function ActionBar({ type }: Props) {
   };
 
   return (
-    <div className="flex justify-between lg:hidden border-b-[2px] p-4 ">
+    <div className="flex justify-between lg:hidden border-b-[2px] p-3 ">
       <button onClick={() => navigate("/notes")} className="flex">
-        <StepBack /> Go Back
+        <StepBack />
+        <p>Go Back</p>
       </button>
       <div className="flex gap-4">
         <button onClick={handleDelete}>

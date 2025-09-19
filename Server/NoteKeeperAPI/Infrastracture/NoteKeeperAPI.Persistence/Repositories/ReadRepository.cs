@@ -1,13 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NoteKeeperAPI.Application.Repositories;
+using NoteKeeperAPI.Domain.Entities;
 using NoteKeeperAPI.Domain.Entities.Common;
 using NoteKeeperAPI.Persistence.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NoteKeeperAPI.Persistence.Repositories
 {
@@ -35,8 +31,10 @@ namespace NoteKeeperAPI.Persistence.Repositories
             var query = Table.AsQueryable();
             if (!tracking)
                 query = query.AsNoTracking();
-            return await query.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id) );
+            return await query
+                .FirstOrDefaultAsync(data => data.Id == Guid.Parse(id) );
         }
+
 
         public async Task<T> GetSingleAsync(System.Linq.Expressions.Expression<Func<T, bool>> method, bool tracking = true)
         {
